@@ -23,6 +23,7 @@ class Crawler extends CI_Controller
 
     public function contentminer($hostid=0,$limit=10)
     {
+      $time_start = microtime(true);
       //if no predefined id, get random from database
       if ($hostid==0) {$hostid=$this->crawlmodel->RandomHost();}
       //get hostid info, we need name xpath, price xpath, format regex if any.
@@ -67,6 +68,7 @@ class Crawler extends CI_Controller
       //var_dump($hostinfo);
       //get all from url list where is_extracted=0 and host_id=id limit=10
       //if regex not empty use regex to match , if match open, if not match mark as is_extracted.
+      echo '<br>Total execution time in seconds: ' . (microtime(true) - $time_start);
     }
 
 //THE MOST IMPORTANT OF ALLL
@@ -105,6 +107,7 @@ return $data;
 
     public function linkminer($hostid=4)
     {
+      $time_start = microtime(true);
       //check if any website in host table not yet crawl
       $HostNotYetCrawl = $this->crawlmodel->HostNotYetCrawl();
       //if not found, find in url_list table
@@ -162,7 +165,7 @@ return $data;
                       echo $link." has been inserted <br>";
                   }
                 }
-
+                echo '<br>Total execution time in seconds: ' . (microtime(true) - $time_start);
     }
 
     //wiping the old product already marked as maybe_product =0
