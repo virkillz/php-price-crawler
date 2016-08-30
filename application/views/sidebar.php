@@ -34,7 +34,7 @@
                                 <a href="<?php echo base_url(); ?>host" class="waves-effect <?php if ($this->uri->segment(1)=='host') {echo "active";} ?>"><i class="md md-dashboard"></i><span> Manage Website </span></a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url(); ?>links" class="waves-effect <?php if ($this->uri->segment(1)=='links') {echo "active";} ?>"><i class="md md-link"></i><span> Manage Links </span></a>
+                                <a href="<?php echo base_url(); ?>links/all" class="waves-effect <?php if ($this->uri->segment(1)=='links') {echo "active";} ?>"><i class="md md-link"></i><span> Manage Links </span></a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url(); ?>scrap" class="waves-effect <?php if ($this->uri->segment(1)=='scrap') {echo "active";} ?>"><i class="md  md-track-changes"></i><span> Scrap Result </span></a>

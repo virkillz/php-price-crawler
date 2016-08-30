@@ -29,7 +29,8 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <table id="datatable" class="table table-striped table-bordered">
+                                              <ul class="pagination"><?php echo $links; ?></ul>
+                                                <table class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
                                                             <th>Link ID</th>
@@ -44,7 +45,7 @@
                                                     <tbody>
                                                     <?php
 
-                                                    foreach ($result as $h) {
+                                                    foreach ($results as $h) {
                                                         echo '<tr><td>'.$h->id.'</td><td>'.$h->url.'</td><td>'.$h->host_id.'</td><td>'.boolToString($h->is_crawled).'</td><td>'.boolToString($h->maybe_product).'</td><td>'.boolToString($h->is_extracted).'</td><td><form action="'.base_url().'masterdata/agent/'.$h->id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
                                                     }
 
@@ -54,7 +55,7 @@
                                                        ?>
                                                     </tbody>
                                                 </table>
-
+                                                <ul class="pagination"><?php echo $links; ?></ul>
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +70,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2015 © <?php echo MY_CONSTANT; ?>.
+                    Page rendered in <strong>{elapsed_time}</strong> seconds | 2015 © <?php echo MY_CONSTANT; ?>.
                 </footer>
 
             </div>

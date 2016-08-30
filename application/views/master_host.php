@@ -35,8 +35,6 @@
                                                             <th>ID</th>
                                                             <th>Name</th>
                                                             <th>Example URL</th>
-                                                            <th>Name Xpath</th>
-                                                            <th>Price Xpath</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -44,7 +42,7 @@
                                                     <?php
 
                                                     foreach ($hasil as $h) {
-                                                        echo '<tr><td>'.$h->id.'</td><td>'.$h->host_name.'</td><td>'.$h->example_url.'</td><td>'.$h->name_xpath.'</td><td>'.$h->price_xpath.'</td><td><form action="'.base_url().'host/'.$h->id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
+                                                        echo '<tr><td>'.$h->id.'</td><td>'.$h->host_name.'</td><td>'.$h->example_url.'</td><td><form action="'.base_url().'host/detail/'.$h->id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
                                                     }
 
                                                        ?>

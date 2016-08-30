@@ -39,11 +39,39 @@ function getTotalPotentialProd()
   return $query->num_rows();
 }
 
+public function fetch_all_link($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get("url_list");
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   }
+
 function getAllLink()
 {
   $query = $this -> db -> get('url_list');
   return $query->result();
 }
+
+function count_all_link($hostid)
+{
+  $this-> db -> where('host_id',$hostid);
+  $query = $this -> db -> get('url_list');
+  return $query->num_rows();
+}
+
+function count_all_product($hostid)
+{
+  $this-> db -> where('host_id',$hostid);
+  $query = $this -> db -> get('crawl_result');
+  return $query->num_rows();
+}
+
 
  function get_host()
  {
@@ -51,6 +79,20 @@ function getAllLink()
    return $query->result();
  }
 
+ function get_host_detail($id)
+ {
+   $this-> db -> where('id',$id);
+   $query = $this -> db -> get('host');
+
+   if($query -> num_rows() == 1)
+   {
+     return $query->result();
+   }
+   else
+   {
+     return false;
+   }
+ }
 
  function getProfile($username)
  {
@@ -68,6 +110,11 @@ function getAllLink()
    }
  }
 
+ function update_host($id,$data){
+ $this -> db -> where('id', $id);
+ $this -> db -> update('host', $data);
+
+ }
 
 function update_profile_id($id,$data){
 $this -> db -> where('username', $id);

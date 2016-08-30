@@ -32,6 +32,7 @@ class Home extends Auth_Controller
         $this->load->view('home_view',$data);
     }
 
+
     public function getFullName()
     {
         return $this->session->userdata('fullname');

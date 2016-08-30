@@ -12,10 +12,41 @@ class Links extends Auth_Controller
         $this->load->model('ourmodel','',TRUE);
         //$this->load->helper('scraper_helper');
         $this->load->helper('scraper');
+        $this->load->helper("url");
+        $this->load->library("pagination");
     }
 
-    public function index()
+    public function all()
     {
+
+      $config = array();
+      $config['next_tag_open'] = '<li>';
+      $config['next_tag_close'] = '</li>';
+      $config['first_tag_open'] = '<li>';
+      $config['last_tag_close'] = '</li>';
+      $config['last_tag_open'] = '<li>';
+      $config['last_tag_close'] = '</li>';
+      $config['prev_tag_open'] = '<li>';
+      $config['prev_tag_close'] = '</li>';
+      $config['cur_tag_open'] = '<li><a href="#"><strong>';
+      $config['cur_tag_close'] = '</strong></a></li>';
+      $config['num_tag_open'] = '<li>';
+      $config['num_tag_close'] = '</li>';
+      // $config["full_tag_open"]="<li>";
+      // $config["full_tag_close"]="</li>";
+      $config["base_url"] = site_url('links/all');
+      $config["total_rows"] = $this->ourmodel->getTotalLink();
+      $config["per_page"] = 20;
+      $config['num_links'] = 3;
+      $config['use_page_numbers'] = TRUE;
+      $config["uri_segment"] = 3;
+
+      $this->pagination->initialize($config);
+
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 1;
+        $data["results"] = $this->ourmodel->fetch_all_link($config["per_page"], $page*$config["per_page"]);
+        $data["links"] = $this->pagination->create_links();
+
         if ($this->session->userdata('locked')) {
             $this->session->unset_userdata('locked');
         }
@@ -26,7 +57,7 @@ class Links extends Auth_Controller
         $this->load->view('topbar', $session_data);
         $this->load->view('sidebar', $session_data);
 
-        $data['result']=$this->ourmodel->getAllLink();
+        //$data['result']=$this->ourmodel->getAllLink();
         $this->load->view('master_link',$data);
     }
 
