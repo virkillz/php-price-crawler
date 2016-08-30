@@ -45,6 +45,7 @@ class Host extends Auth_Controller
         $data['details']= $this->ourmodel->get_host_detail($id);
         if ($data['details']) {
           $data['alllink']= $this->ourmodel->count_all_link($id);
+          $data['allpotprod']= $this->ourmodel->count_all_potential($id);
           $data['allproduct']= $this->ourmodel->count_all_product($id);
           $this->load->view('master_host_detail',$data);
         } else {

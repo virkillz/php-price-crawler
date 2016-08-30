@@ -39,6 +39,14 @@ function getTotalPotentialProd()
   return $query->num_rows();
 }
 
+function count_all_potential($hostid)
+{
+  $this-> db -> where('maybe_product',1);
+  $this-> db -> where('host_id',$hostid);
+  $query = $this -> db -> get('url_list');
+  return $query->num_rows();
+}
+
 public function fetch_all_link($limit, $start) {
         $this->db->limit($limit, $start);
         $query = $this->db->get("url_list");

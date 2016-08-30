@@ -86,6 +86,12 @@
                                               </div>
                                           </div>
                                           <div class="form-group">
+                                              <label class="col-sm-2 control-label">Potential Product URL</label>
+                                              <div class="col-sm-10">
+                                                <a href="#"> <p class="form-control-static"><?php echo $allpotprod; ?> [detail]</p> </a>
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
                                               <label class="col-sm-2 control-label">Product Info Collected</label>
                                               <div class="col-sm-10">
                                                 <a href="#"> <p class="form-control-static"><?php echo $allproduct; ?> [detail]</p> </a>
@@ -103,7 +109,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2015 © Moltran.
+                    Page rendered in <strong>{elapsed_time}</strong> seconds | 2015 © <?php echo MY_CONSTANT; ?>.
                 </footer>
 
             </div>

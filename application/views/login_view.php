@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-        <meta name="author" content="Coderthemes">
+        <meta name="description" content="Product Data Mining Tool">
+        <meta name="author" content="VirKill">
 
         <link rel="shortcut icon" href="images/favicon_1.ico">
 
-        <title><?php echo MY_CONSTANT; ?> - Responsive Admin Dashboard Template</title>
+        <title><?php echo MY_CONSTANT; ?> - Product Data Mining Tool</title>
 
         <!-- Base Css Files -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -36,25 +36,25 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
-        
+
     </head>
     <body>
 
 
         <div class="wrapper-page">
             <div class="panel panel-color panel-primary panel-pages">
-                <div class="panel-heading bg-img"> 
+                <div class="panel-heading bg-img">
                     <div class="bg-overlay"></div>
                     <h3 class="text-center m-t-10 text-white"> Sign In to <strong><?php echo MY_CONSTANT; ?></strong> </h3>
-                </div> 
+                </div>
 
 
                 <div class="panel-body">
    <form class="form-horizontal m-t-20" action="verifylogin" method="post">
 
 
-<?php //echo form_open('verifylogin','class="form-horizontal m-t-20"'); ?>   
-<?php echo validation_errors(); ?>                 
+<?php //echo form_open('verifylogin','class="form-horizontal m-t-20"'); ?>
+<?php echo validation_errors(); ?>
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control input-lg " type="text" required="" placeholder="Username" id="username" name="username">
@@ -75,10 +75,10 @@
                                     Remember me
                                 </label>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                     <div class="form-group text-center m-t-40">
                         <div class="col-xs-12">
                             <button class="btn btn-primary btn-lg w-lg waves-effect waves-light" type="submit">Log In</button>
@@ -93,14 +93,14 @@
                             <a href="register.html">Create an account</a>
                         </div>
                     </div>
-                </form> 
+                </form>
 
-                </div>                                 
-                
+                </div>
+
             </div>
         </div>
 
-        
+
     	<script>
             var resizefunc = [];
         </script>
@@ -118,6 +118,6 @@
 
         <!-- CUSTOM JS -->
         <script src="assets/js/jquery.app.js"></script>
-	
+
 	</body>
 </html>

@@ -21,7 +21,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2015 © Moltran.
+                    Page rendered in <strong>{elapsed_time}</strong> seconds | 2015 © <?php echo MY_CONSTANT; ?>.
                 </footer>
 
             </div>

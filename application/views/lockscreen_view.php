@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-        <meta name="author" content="Coderthemes">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Product Data Mining Tool">
+      <meta name="author" content="VirKill">
 
-        <link rel="shortcut icon" href="images/favicon_1.ico">
+      <link rel="shortcut icon" href="images/favicon_1.ico">
 
-        <title><?php echo MY_CONSTANT; ?> - Responsive Admin Dashboard Template</title>
+      <title><?php echo MY_CONSTANT; ?> - Product Data Mining Tool</title>
 
         <!-- Base Css Files -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -38,7 +38,7 @@
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
-        
+
     </head>
     <body>
 
@@ -46,36 +46,36 @@
         <div class="wrapper-page">
             <div class="panel panel-color panel-primary panel-pages">
 
-                <div class="panel-heading bg-img"> 
+                <div class="panel-heading bg-img">
                     <div class="bg-overlay"></div>
                     <h3 class="text-center m-t-10 text-white">&nbsp;</h3>
-                </div> 
+                </div>
 
                 <div class="panel-body" style="padding-top:0px;">
-                 <form method="post" action="verifylogin" role="form" class="text-center"> 
-                    <div class="user-thumb"> 
+                 <form method="post" action="verifylogin" role="form" class="text-center">
+                    <div class="user-thumb">
                         <img src="assets/images/avatar-1.jpg" class="img-responsive img-circle img-thumbnail" alt="thumbnail">
-                    </div> 
-                    <div class="form-group"> 
-                        <h3><?php  echo $fullname;?></h3> 
-                        <p class="text-muted">Enter your password to access.</p> 
-                        <div class="input-group m-t-30"> 
+                    </div>
+                    <div class="form-group">
+                        <h3><?php  echo $fullname;?></h3>
+                        <p class="text-muted">Enter your password to access.</p>
+                        <div class="input-group m-t-30">
 							<input type="hidden" name="username" value="<?php  echo $username;?>">
-                            <input type="password" name="password" class="form-control input-lg" placeholder="Password"> 
-                            <span class="input-group-btn"> <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">Log In</button> </span> 
-                        </div> 
-                    </div> 
+                            <input type="password" name="password" class="form-control input-lg" placeholder="Password">
+                            <span class="input-group-btn"> <button type="submit" class="btn btn-primary btn-lg waves-effect waves-light">Log In</button> </span>
+                        </div>
+                    </div>
                     <div class="text-right">
                         <a href="logout">Not <?php  echo $fullname;?> ?</a>
                     </div>
-                </form>         
+                </form>
 
-                </div>                                 
-                
+                </div>
+
             </div>
         </div>
 
-        
+
     	<script>
             var resizefunc = [];
         </script>
@@ -93,6 +93,6 @@
 
         <!-- CUSTOM JS -->
         <script src="assets/js/jquery.app.js"></script>
-	
+
 	</body>
 </html>
