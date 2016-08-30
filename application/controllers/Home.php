@@ -9,6 +9,7 @@ class Home extends Auth_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('ourmodel','',TRUE);
     }
 
     public function index()
@@ -22,7 +23,13 @@ class Home extends Auth_Controller
         $this->load->view('header', $data);
         $this->load->view('topbar', $session_data);
         $this->load->view('sidebar', $session_data);
-        $this->load->view('home_view');
+
+        $data['allhost'] = $this->ourmodel->getTotalHost();
+        $data['alllink'] = $this->ourmodel->getTotalLink();
+        $data['allprod'] = $this->ourmodel->getTotalProd();
+        $data['allpotprod'] = $this->ourmodel->getTotalPotentialProd();
+
+        $this->load->view('home_view',$data);
     }
 
     public function getFullName()

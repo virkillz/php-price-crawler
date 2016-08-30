@@ -11,6 +11,40 @@ Class Ourmodel extends CI_Model
    }
  }
 
+function getScrapResult()
+{
+  $query = $this -> db -> get('crawl_result');
+  return $query->result();
+}
+
+function getTotalHost()
+{
+  return $this->db->count_all('host');
+}
+
+function getTotalLink()
+{
+  return $this->db->count_all('url_list');
+}
+
+function getTotalProd()
+{
+  return $this->db->count_all('crawl_result');
+}
+
+function getTotalPotentialProd()
+{
+  $this-> db -> where('maybe_product',1);
+  $query = $this -> db -> get('url_list');
+  return $query->num_rows();
+}
+
+function getAllLink()
+{
+  $query = $this -> db -> get('url_list');
+  return $query->result();
+}
+
  function get_host()
  {
    $query = $this -> db -> get('host');

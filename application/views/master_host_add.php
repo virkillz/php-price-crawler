@@ -66,6 +66,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-md-2 control-label">Product URL Pattern</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="regex" placeholder="Regex example: /https?:\/\/.[^\/]*\/[^\/]+(.html)/">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="col-md-2 control-label">Description</label>
                                                 <div class="col-md-10">
                                                   <div class="col-md-10">

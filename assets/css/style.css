@@ -675,8 +675,8 @@ a:focus {
   border: 1px solid #ddd;
 }
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
-  background-color: #317eeb;
-  border-color: #317eeb;
+  background-color: #000000;
+  border-color: #000000;
 }
 
 /* 2.10 Tabs-Accordions */
@@ -709,13 +709,13 @@ a:focus {
   color: #9398a0;
 }
 .tabs li.tab a.active {
-  color: #317eeb !important;
+  color: #000000 !important;
 }
 .tabs .indicator {
   position: absolute;
   bottom: 0;
   height: 2px;
-  background-color: #317eeb;
+  background-color: #000000;
   will-change: left, right;
 }
 .tabs-top .indicator {
@@ -741,7 +741,7 @@ a:focus {
   background-color: transparent;
 }
 .nav.nav-tabs>li>a:hover,.nav.tabs-vertical>li>a:hover {
-  color: #317eeb !important;
+  color: #000000 !important;
 }
 .tab-content {
   color: #777;
@@ -761,7 +761,7 @@ a:focus {
   border: none;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover ,.tabs-vertical>li.active>a, .tabs-vertical>li.active>a:focus, .tabs-vertical>li.active>a:hover {
-  color: #317eeb !important;
+  color: #000000 !important;
 }
 .tabs-vertical-env {
   margin-bottom: 30px;
@@ -955,10 +955,10 @@ a:focus {
   font-weight: 300;
 }
 .list-group-item.active>.badge, .nav-pills>.active>a>.badge {
-  color: #317eeb;
+  color: #000000;
 }
 .list-group-item.active .list-group-item-text, .list-group-item.active:focus .list-group-item-text, .list-group-item.active:hover .list-group-item-text {
-  color: #317eeb;
+  color: #000000;
 }
 /* 2.15 Other Inputs */
 .has-success .form-control {
@@ -1213,7 +1213,7 @@ lesshat-selector {
   position: relative;
   z-index: 1;
   width: 240px;
-  background: #317eeb;
+  background: #000000;
 }
 .logo h1 {
   margin: 0px auto;
@@ -1223,7 +1223,7 @@ lesshat-selector {
 .navbar-default {
   border: none;
   margin-bottom: 0px;
-  background-color: #317eeb;
+  background-color: #000000;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   border-radius: 0px;
 }
@@ -1434,7 +1434,7 @@ body.fixed-left .side-menu.left {
   border-top: 0;
 }
 #sidebar-menu ul ul li.active a{
-  color: #317eeb;
+  color: #000000;
 }
 #sidebar-menu ul ul a {
   padding: 10px 25px 10px 65px;
@@ -1442,7 +1442,7 @@ body.fixed-left .side-menu.left {
   color: #75798B;
 }
 #sidebar-menu ul ul a:hover {
-  color: #317eeb;
+  color: #000000;
 }
 #sidebar-menu ul ul ul a {
   padding-left: 80px;
@@ -2172,7 +2172,7 @@ body.fixed-left .side-menu.left {
   transition: all 0.3s ease-out;
 }
 .portfolioFilter a:hover,.portfolioFilter a.current{
-  background-color: #317eeb;
+  background-color: #000000;
   color: #ffffff;
 }
 .thumb {
@@ -2358,7 +2358,7 @@ body.fixed-left .side-menu.left {
   box-shadow: none;
 }
 .ms-container .ms-selectable li.ms-hover, .ms-container .ms-selection li.ms-hover {
-  background-color: #317eeb;
+  background-color: #000000;
 }
 /* spinner */
 .spinner-buttons.btn-group-vertical .btn {
@@ -2424,7 +2424,7 @@ body.fixed-left .side-menu.left {
   background-color: transparent;
   border-radius: 4px;
   border-color: transparent;
-  color: #317eeb;
+  color: #000000;
 }
 /* X-editor */
 .editor-horizontal .popover-content {
@@ -2461,7 +2461,7 @@ body.fixed-left .side-menu.left {
 .wizard > .steps .current a,
 .wizard > .steps .current a:hover,
 .wizard > .steps .current a:active {
-  background: #317eeb;
+  background: #000000;
 }
 .wizard > .steps .current a .number,
 .wizard > .steps .current a:hover .number,
@@ -2482,7 +2482,7 @@ body.fixed-left .side-menu.left {
   margin-bottom: 30px;
 }
 .wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active {
-  background: #317eeb;
+  background: #000000;
   color: #fff;
   border-radius: 2px;
 }
@@ -2520,7 +2520,7 @@ th {
 }
 /* Responsive Table */
 table.focus-on tbody tr.focused th, table.focus-on tbody tr.focused td {
-    background-color: #317eeb;
+    background-color: #000000;
   color: #ffffff;
 }
 .table-rep-plugin tbody th {
@@ -2629,7 +2629,7 @@ div.dataTables_info {
   color: #fff;
   font-size: 16px;
   line-height: 40px;
-  background: #317eeb;
+  background: #000000;
   border-radius: 4px;
   padding: 10px 20px;
 }
@@ -2644,13 +2644,13 @@ div.dataTables_info {
   bottom: -15px;
   border-left: 16px solid transparent;
   border-right: 16px solid transparent;
-  border-top: 16px solid #317eeb;
+  border-top: 16px solid #000000;
 }
 .gmaps-overlay_arrow.below {
   top: -15px;
   border-left: 16px solid transparent;
   border-right: 16px solid transparent;
-  border-bottom: 16px solid #317eeb;
+  border-bottom: 16px solid #000000;
 }
 
 
@@ -3212,7 +3212,7 @@ div.dataTables_info {
   font-family: 'Nunito', sans-serif;
 }
 .lj-countdown {
-  color: #317eeb;
+  color: #000000;
   margin-top: 40px;
   text-align: center;
 }

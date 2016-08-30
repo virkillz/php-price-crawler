@@ -25,7 +25,9 @@ class Links extends Auth_Controller
         $this->load->view('header', $data);
         $this->load->view('topbar', $session_data);
         $this->load->view('sidebar', $session_data);
-        $this->load->view('master_link');
+
+        $data['result']=$this->ourmodel->getAllLink();
+        $this->load->view('master_link',$data);
     }
 
     public function add_link()

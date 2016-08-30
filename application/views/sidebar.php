@@ -28,7 +28,7 @@
                                 <a href="<?php echo base_url(); ?>home" class="waves-effect <?php if ($this->uri->segment(1)=='home') {echo "active";} ?>"><i class="md md-home"></i><span> Dashboard </span></a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url(); ?>test" class="waves-effect <?php if ($this->uri->segment(1)=='test') {echo "active";} ?>"><i class="md md-dashboard"></i><span> Parsing Test </span></a>
+                                <a href="<?php echo base_url(); ?>test" class="waves-effect <?php if ($this->uri->segment(1)=='test') {echo "active";} ?>"><i class="md md-done-all"></i><span> Parsing Test </span></a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url(); ?>host" class="waves-effect <?php if ($this->uri->segment(1)=='host') {echo "active";} ?>"><i class="md md-dashboard"></i><span> Manage Website </span></a>

@@ -11,10 +11,10 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title">Manage Link</h4>
+                                <h4 class="pull-left page-title">Scrap Result</h4>
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#"><?php echo MY_CONSTANT; ?></a></li>
-                                    <li class="active">Manage Link</li>
+                                    <li class="active">Scrap Result</li>
                                 </ol>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                     <!--    <form action="<?php echo base_url(); ?>links/add_link"><button type="submit" class="btn btn-warning waves-effect waves-light m-b-5"> <i class="fa fa-plus"></i> <span> ADD NEW</span></button></form> -->
-                                    <h4> Link Table</h4>
+                                    <h4> Result Table</h4>
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
@@ -32,24 +32,19 @@
                                                 <table id="datatable" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>Link ID</th>
+                                                            <th>Result ID</th>
+                                                            <th>Name </th>
+                                                            <th>Price</th>
                                                             <th>URL</th>
-                                                            <th>Website ID</th>
-                                                            <th>Already scrawled</th>
-                                                            <th>Possible Product</th>
-                                                            <th>Already Extracted</th>
+                                                            <th>Website Id</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                     <?php
 
-                                                    foreach ($result as $h) {
-                                                        echo '<tr><td>'.$h->id.'</td><td>'.$h->url.'</td><td>'.$h->host_id.'</td><td>'.boolToString($h->is_crawled).'</td><td>'.boolToString($h->maybe_product).'</td><td>'.boolToString($h->is_extracted).'</td><td><form action="'.base_url().'masterdata/agent/'.$h->id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
-                                                    }
-
-                                                    function boolToString($b) {
-                                                      if ($b==1) {return "Yes";} else {return "No";}
+                                                    foreach ($hasil as $h) {
+                                                        echo '<tr><td>'.$h->id.'</td><td>'.$h->name.'</td><td>'.$h->price.'</td><td>'.$h->url.'</td><td>'.$h->host_id.'</td><td><form action="'.base_url().'masterdata/agent/'.$h->id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
                                                     }
                                                        ?>
                                                     </tbody>

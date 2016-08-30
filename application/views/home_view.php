@@ -4,7 +4,7 @@
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
-            <!-- ============================================================== -->                      
+            <!-- ============================================================== -->
             <div class="content-page">
                 <!-- Start content -->
                 <div class="content">
@@ -25,83 +25,43 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-lg-3">
                                 <div class="mini-stat clearfix bx-shadow">
-                                    <span class="mini-stat-icon bg-info"><i class="ion-social-usd"></i></span>
+                                    <span class="mini-stat-icon bg-info"><i class="ion-earth"></i></span>
                                     <div class="mini-stat-info text-right text-muted">
-                                        <span class="counter">15852</span>
-                                        Total Sales
-                                    </div>
-                                    <div class="tiles-progress">
-                                        <div class="m-t-20">
-                                            <h5 class="text-uppercase">Sales <span class="pull-right">60%</span></h5>
-                                            <div class="progress progress-sm m-0">
-                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <span class="counter"><?php echo $allhost; ?></span>
+                                        Total Website
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-lg-3">
                                 <div class="mini-stat clearfix bx-shadow">
-                                    <span class="mini-stat-icon bg-purple"><i class="ion-ios7-cart"></i></span>
+                                    <span class="mini-stat-icon bg-purple"><i class="ion-link"></i></span>
                                     <div class="mini-stat-info text-right text-muted">
-                                        <span class="counter">956</span>
-                                        New Orders
-                                    </div>
-                                    <div class="tiles-progress">
-                                        <div class="m-t-20">
-                                            <h5 class="text-uppercase">Orders <span class="pull-right">90%</span></h5>
-                                            <div class="progress progress-sm m-0">
-                                                <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                                                    <span class="sr-only">90% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6 col-sm-6 col-lg-3">
-                                <div class="mini-stat clearfix bx-shadow">
-                                    <span class="mini-stat-icon bg-success"><i class="ion-eye"></i></span>
-                                    <div class="mini-stat-info text-right text-muted">
-                                        <span class="counter">20544</span>
-                                        Unique Visitors
-                                    </div>
-                                    <div class="tiles-progress">
-                                        <div class="m-t-20">
-                                            <h5 class="text-uppercase">Visitors <span class="pull-right">60%</span></h5>
-                                            <div class="progress progress-sm m-0">
-                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                                    <span class="sr-only">60% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <span class="counter"><?php echo $alllink; ?></span>
+                                        URL Founded
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-sm-6 col-lg-3">
                                 <div class="mini-stat clearfix bx-shadow">
-                                    <span class="mini-stat-icon bg-primary"><i class="ion-android-contacts"></i></span>
+                                    <span class="mini-stat-icon bg-success"><i class="ion-cube"></i></span>
                                     <div class="mini-stat-info text-right text-muted">
-                                        <span class="counter">5210</span>
-                                        New Users
-                                    </div>
-                                    <div class="tiles-progress">
-                                        <div class="m-t-20">
-                                            <h5 class="text-uppercase">Users <span class="pull-right">57%</span></h5>
-                                            <div class="progress progress-sm m-0">
-                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%;">
-                                                    <span class="sr-only">57% Complete</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <span class="counter"><?php echo $allpotprod; ?></span>
+                                        Potential Product URL
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+
+                            <div class="col-md-6 col-sm-6 col-lg-3">
+                                <div class="mini-stat clearfix bx-shadow">
+                                    <span class="mini-stat-icon bg-primary"><i class="ion-pricetags"></i></span>
+                                    <div class="mini-stat-info text-right text-muted">
+                                        <span class="counter"><?php echo $allprod; ?></span>
+                                        Product Data
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- End row-->
 
 
@@ -189,200 +149,8 @@
                             </div> <!-- end col -->
                         </div> <!-- End row -->
 
-
-                        <div class="row">
-                            <!-- INBOX -->
-                            <div class="col-lg-4">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">Inbox</h4>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="inbox-widget nicescroll mx-box">
-                                            <a href="#">
-                                                <div class="inbox-item">
-                                                    <div class="inbox-item-img"><img src="images/users/avatar-1.jpg" class="img-circle" alt=""></div>
-                                                    <p class="inbox-item-author">Chadengle</p>
-                                                    <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                    <p class="inbox-item-date">13:40 PM</p>
-                                                </div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="inbox-item">
-                                                    <div class="inbox-item-img"><img src="images/users/avatar-2.jpg" class="img-circle" alt=""></div>
-                                                    <p class="inbox-item-author">Tomaslau</p>
-                                                    <p class="inbox-item-text">I've finished it! See you so...</p>
-                                                    <p class="inbox-item-date">13:34 PM</p>
-                                                </div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="inbox-item">
-                                                    <div class="inbox-item-img"><img src="images/users/avatar-3.jpg" class="img-circle" alt=""></div>
-                                                    <p class="inbox-item-author">Stillnotdavid</p>
-                                                    <p class="inbox-item-text">This theme is awesome!</p>
-                                                    <p class="inbox-item-date">13:17 PM</p>
-                                                </div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="inbox-item">
-                                                    <div class="inbox-item-img"><img src="images/users/avatar-4.jpg" class="img-circle" alt=""></div>
-                                                    <p class="inbox-item-author">Kurafire</p>
-                                                    <p class="inbox-item-text">Nice to meet you</p>
-                                                    <p class="inbox-item-date">12:20 PM</p>
-                                                </div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="inbox-item">
-                                                    <div class="inbox-item-img"><img src="images/users/avatar-5.jpg" class="img-circle" alt=""></div>
-                                                    <p class="inbox-item-author">Shahedk</p>
-                                                    <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                    <p class="inbox-item-date">10:15 AM</p>
-                                                </div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="inbox-item">
-                                                    <div class="inbox-item-img"><img src="images/users/avatar-6.jpg" class="img-circle" alt=""></div>
-                                                    <p class="inbox-item-author">Adhamdannaway</p>
-                                                    <p class="inbox-item-text">This theme is awesome!</p>
-                                                    <p class="inbox-item-date">9:56 AM</p>
-                                                </div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="inbox-item">
-                                                    <div class="inbox-item-img"><img src="images/users/avatar-8.jpg" class="img-circle" alt=""></div>
-                                                    <p class="inbox-item-author">Arashasghari</p>
-                                                    <p class="inbox-item-text">Hey! there I'm available...</p>
-                                                    <p class="inbox-item-date">10:15 AM</p>
-                                                </div>
-                                            </a>
-                                            <a href="#">
-                                                <div class="inbox-item">
-                                                    <div class="inbox-item-img"><img src="images/users/avatar-9.jpg" class="img-circle" alt=""></div>
-                                                    <p class="inbox-item-author">Joshaustin</p>
-                                                    <p class="inbox-item-text">I've finished it! See you so...</p>
-                                                    <p class="inbox-item-date">9:56 AM</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->
-
-                            <!-- CHAT -->
-                            <div class="col-lg-4">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading"> 
-                                        <h3 class="panel-title">Chat</h3> 
-                                    </div> 
-                                    <div class="panel-body"> 
-                                        <div class="chat-conversation">
-                                            <ul class="conversation-list nicescroll">
-                                                <li class="clearfix">
-                                                    <div class="chat-avatar">
-                                                        <img src="images/avatar-1.jpg" alt="male">
-                                                        <i>10:00</i>
-                                                    </div>
-                                                    <div class="conversation-text">
-                                                        <div class="ctext-wrap">
-                                                            <i>John Deo</i>
-                                                            <p>
-                                                                Hello!
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="clearfix odd">
-                                                    <div class="chat-avatar">
-                                                        <img src="images/users/avatar-5.jpg" alt="Female">
-                                                        <i>10:01</i>
-                                                    </div>
-                                                    <div class="conversation-text">
-                                                        <div class="ctext-wrap">
-                                                            <i>Smith</i>
-                                                            <p>
-                                                                Hi, How are you? What about our next meeting?
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="clearfix">
-                                                    <div class="chat-avatar">
-                                                        <img src="images/avatar-1.jpg" alt="male">
-                                                        <i>10:01</i>
-                                                    </div>
-                                                    <div class="conversation-text">
-                                                        <div class="ctext-wrap">
-                                                            <i>John Deo</i>
-                                                            <p>
-                                                                Yeah everything is fine
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="clearfix odd">
-                                                    <div class="chat-avatar">
-                                                        <img src="images/users/avatar-5.jpg" alt="male">
-                                                        <i>10:02</i>
-                                                    </div>
-                                                    <div class="conversation-text">
-                                                        <div class="ctext-wrap">
-                                                            <i>Smith</i>
-                                                            <p>
-                                                                Wow that's great
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="row">
-                                                <div class="col-sm-9 chat-inputbar">
-                                                    <input type="text" class="form-control chat-input" placeholder="Enter your text">
-                                                </div>
-                                                <div class="col-sm-3 chat-send">
-                                                    <button type="submit" class="btn btn-info btn-block waves-effect waves-light">Send</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div> <!-- end col-->
-
-
-                            <!-- TODO -->
-                            <div class="col-lg-4">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading"> 
-                                        <h3 class="panel-title">Todo</h3> 
-                                    </div> 
-                                    <div class="panel-body todoapp"> 
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h4 id="todo-message"><span id="todo-remaining"></span> of <span id="todo-total"></span> remaining</h4> 
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <a href="" class="pull-right btn btn-primary btn-sm waves-effect waves-light" id="btn-archive">Archive</a>
-                                            </div>
-                                        </div>
-
-                                        <ul class="list-group no-margn nicescroll todo-list" style="max-height: 288px;" id="todo-list"></ul>
-
-                                         <form name="todo-form" id="todo-form" role="form" class="m-t-20">
-                                            <div class="row">
-                                                <div class="col-sm-9 todo-inputbar">
-                                                    <input type="text" id="todo-input-text" name="todo-input-text" class="form-control" placeholder="Add new todo">
-                                                </div>
-                                                <div class="col-sm-3 todo-send">
-                                                    <button class="btn-primary btn-block btn waves-effect waves-light" type="button" id="todo-btn-submit">Add</button>
-                                                </div>
-                                            </div>
-                                        </form> 
-                                    </div> 
-                                </div>
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
-
                     </div> <!-- container -->
-                               
+
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
@@ -394,122 +162,11 @@
             <!-- End Right content here -->
             <!-- ============================================================== -->
 
-
-            <!-- Right Sidebar -->
-            <div class="side-bar right-bar nicescroll">
-                <h4 class="text-center">Chat</h4>
-                <div class="contact-list nicescroll">
-                    <ul class="list-group contacts-list">
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="images/users/avatar-1.jpg" alt="">
-                                </div>
-                                <span class="name">Chadengle</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="images/users/avatar-2.jpg" alt="">
-                                </div>
-                                <span class="name">Tomaslau</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="images/users/avatar-3.jpg" alt="">
-                                </div>
-                                <span class="name">Stillnotdavid</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="images/users/avatar-4.jpg" alt="">
-                                </div>
-                                <span class="name">Kurafire</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="images/users/avatar-5.jpg" alt="">
-                                </div>
-                                <span class="name">Shahedk</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="assets/images/users/avatar-6.jpg" alt="">
-                                </div>
-                                <span class="name">Adhamdannaway</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="assets/images/users/avatar-7.jpg" alt="">
-                                </div>
-                                <span class="name">Ok</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="assets/images/users/avatar-8.jpg" alt="">
-                                </div>
-                                <span class="name">Arashasghari</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="images/users/avatar-9.jpg" alt="">
-                                </div>
-                                <span class="name">Joshaustin</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="images/users/avatar-10.jpg" alt="">
-                                </div>
-                                <span class="name">Sortino</span>
-                                <i class="fa fa-circle offline"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                    </ul>  
-                </div>
-            </div>
-            <!-- /Right-bar -->
-
         </div>
         <!-- END wrapper -->
 
 
-    
+
         <script>
             var resizefunc = [];
         </script>
@@ -545,7 +202,7 @@
         <!-- Counter-up -->
         <script src="assets/assets/counterup/waypoints.min.js" type="text/javascript"></script>
         <script src="assets/assets/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-        
+
         <!-- CUSTOM JS -->
         <script src="assets/js/jquery.app.js"></script>
 
@@ -569,6 +226,155 @@
                 });
             });
         </script>
-    
+<script type="text/javascript">
+
+        !function($) {
+            "use strict";
+
+            var Dashboard = function() {
+                this.$body = $("body")
+                this.$realData = []
+            };
+
+            //creates plot graph
+            Dashboard.prototype.createPlotGraph = function(selector, data1, data2, labels, colors, borderColor, bgColor) {
+              //shows tooltip
+              function showTooltip(x, y, contents) {
+                $('<div id="tooltip" class="tooltipflot">' + contents + '</div>').css( {
+                  position: 'absolute',
+                  top: y + 5,
+                  left: x + 5
+                }).appendTo("body").fadeIn(200);
+              }
+
+              $.plot($(selector),
+                  [ { data: data1,
+                    label: labels[0],
+                    color: colors[0]
+                  },
+                  { data: data2,
+                    label: labels[1],
+                    color: colors[1]
+                  }
+                ],
+                {
+                    series: {
+                       lines: {
+                      show: true,
+                      fill: true,
+                      lineWidth: 1,
+                      fillColor: {
+                        colors: [ { opacity: 0.0 },
+                                  { opacity: 0.7 }
+                                ]
+                      }
+                    },
+                    points: {
+                      show: true
+                    },
+                    shadowSize: 0
+                    },
+                    legend: {
+                    position: 'nw'
+                  },
+                  grid: {
+                    hoverable: true,
+                    clickable: true,
+                    borderColor: borderColor,
+                    borderWidth: 0,
+                    labelMargin: 10,
+                    backgroundColor: bgColor
+                  },
+                  yaxis: {
+                    min: 0,
+                    max: 15,
+                    color: 'rgba(0,0,0,0)'
+                  },
+                  xaxis: {
+                    color: 'rgba(0,0,0,0)'
+                  },
+                  tooltip: true,
+                  tooltipOpts: {
+                      content: '%s: Value of %x is %y',
+                      shifts: {
+                          x: -60,
+                          y: 25
+                      },
+                      defaultTheme: false
+                  }
+              });
+            },
+            //end plot graph
+
+            //creates Pie Chart
+            Dashboard.prototype.createPieGraph = function(selector, labels, datas, colors) {
+                var data = [{
+                    label: labels[0],
+                    data: datas[0]
+                }, {
+                    label: labels[1],
+                    data: datas[1]
+                }, {
+                    label: labels[2],
+                    data: datas[2]
+                }];
+                var options = {
+                    series: {
+                        pie: {
+                            show: true
+                        }
+                    },
+                    legend: {
+                        show: false
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: true
+                    },
+                    colors: colors,
+                    tooltip: true,
+                    tooltipOpts: {
+                        defaultTheme: false
+                    }
+                };
+
+                $.plot($(selector), data, options);
+            },
+
+
+
+                //initializing various charts and components
+                Dashboard.prototype.init = function() {
+                  //plot graph data
+                  var uploads = [[0, 9], [1, 8], [2, 5], [3, 8], [4, 5], [5, 14], [6, 10]];
+                  var downloads = [[0, 5], [1, 12], [2,4], [3, 3], [4, 12], [5, 11], [6, 14]];
+                  var plabels = ["Visits", "Pages/Visit"];
+                  var pcolors = ['#317eeb', '#29b6f6'];
+                  var borderColor = '#fff';
+                  var bgColor = '#fff';
+                  this.createPlotGraph("#website-stats", uploads, downloads, plabels, pcolors, borderColor, bgColor);
+
+                    //Pie graph data
+                    var pielabels = ["Series 1","Series 2","Series 3"];
+                    var datas = [20,30, 20];
+                    var colors = ["rgba(30, 136, 229, 0.7)", "rgba(41, 182, 246, 0.7)", "rgba(126, 87, 194, 0.7)"];
+                    this.createPieGraph("#pie-chart #pie-chart-container", pielabels , datas, colors);
+
+                },
+
+            //init Dashboard
+            $.Dashboard = new Dashboard, $.Dashboard.Constructor = Dashboard
+
+        }(window.jQuery),
+
+        //initializing Dashboard
+        function($) {
+            "use strict";
+            $.Dashboard.init()
+        }(window.jQuery);
+
+
+</script>
+
     </body>
 </html>

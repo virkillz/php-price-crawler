@@ -26,5 +26,7 @@ How to install:
 1. Dump database.sql
 2. Edit application/config/config.php change the base url to your own.
 3. Modify database credential in application/config/database.php
+4. Put linkminer script into cronjob : http://your-host.com/crawler/crawler/linkminer/  (ideally every 5 minutes)
+5. Put contentminer script into cronjob : http://your-host.com/crawler/crawler/contentminer/ (ideally every 5 minute)
 
 That's for now.

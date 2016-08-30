@@ -233,7 +233,7 @@
     },
     //creates Combine Chart
     FlotChart.prototype.createCombineGraph = function(selector, ticks, labels, datas) {
-        
+
         var data = [{
             label: labels[0],
             data: datas[0],
@@ -299,7 +299,7 @@
           this.createPlotGraph("#website-stats", uploads, downloads, plabels, pcolors, borderColor, bgColor);
 
           //Pie graph data
-          var pielabels = ["Series 1","Series 2","Series 3"];
+          var pielabels = ["Serasdsadas","Series 4","Series 3"];
           var datas = [20,30, 15];
           var colors = ["#60b1cc", "#6c85bd", "#1ca8dd"];
           this.createPieGraph("#pie-chart #pie-chart-container", pielabels , datas, colors);
@@ -312,7 +312,7 @@
             function updatePlot() {
                 plot.setData([$this.randomData()]);
                 // Since the axes don't change, we don't need to call plot.setupGrid()
-                plot.draw(); 
+                plot.draw();
                 setTimeout(updatePlot, $( 'html' ).hasClass( 'mobile-device' ) ? 1000 : 30);
             }
             updatePlot();
@@ -436,7 +436,7 @@
 
     //init flotchart
     $.FlotChart = new FlotChart, $.FlotChart.Constructor = FlotChart
-    
+
 }(window.jQuery),
 
 //initializing flotchart
@@ -444,6 +444,3 @@ function($) {
     "use strict";
     $.FlotChart.init()
 }(window.jQuery);
-
-
-

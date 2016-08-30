@@ -23,7 +23,9 @@ class Scrap extends Auth_Controller
         $this->load->view('header', $data);
         $this->load->view('topbar', $session_data);
         $this->load->view('sidebar', $session_data);
-        $this->load->view('master_link');
+
+        $data['hasil'] = $this->ourmodel->getScrapResult();
+        $this->load->view('master_scrap',$data);
     }
 
     public function add_link()
