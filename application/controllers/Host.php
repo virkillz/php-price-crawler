@@ -120,6 +120,7 @@ class Host extends Auth_Controller
              'name_xpath' => $this->input->post('namepath'),
              'prod_regex' => $this->input->post('regex'),
              'price_xpath' => $this->input->post('pricepath'),
+             'is_crawled' => $this->input->post('iscrawled'),
              'remarks' => $this->input->post('desc')
            );
 

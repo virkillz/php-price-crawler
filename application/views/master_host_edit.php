@@ -79,6 +79,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-sm-2 control-label">Has been Crawled</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control" name="iscrawled">
+                                                          <option value="1" <?php if($details[0]->is_crawled==1) {echo "selected";} ?>>Yes</option>
+                                                          <option value="0" <?php if($details[0]->is_crawled==0) {echo "selected";} ?>>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="col-md-2 control-label">Description</label>
                                                 <div class="col-md-10">
                                                   <div class="col-md-10">
