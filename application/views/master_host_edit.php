@@ -73,9 +73,21 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label">Product URL Pattern</label>
+                                                <label class="col-md-2 control-label">Product URL Regex</label>
                                                 <div class="col-md-10">
                                                     <input type="text" class="form-control" name="regex"  value="<?php echo $details[0]->prod_regex; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Category URL Regex</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="iscat" value="<?php echo $details[0]->cat_regex; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Blacklist URL Regex</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="blacklistregex" value="<?php echo $details[0]->blacklist_regex; ?>">
                                                 </div>
                                             </div>
                                             <div class="form-group">

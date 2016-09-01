@@ -34,7 +34,8 @@
                                                         <tr>
                                                             <th>ID</th>
                                                             <th>Name</th>
-                                                            <th>URL</th>
+                                                            <th>Link Collected</th>
+                                                            <th>Product Link</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -42,7 +43,7 @@
                                                     <?php
 
                                                     foreach ($hasil as $h) {
-                                                        echo '<tr><td>'.$h->id.'</td><td>'.$h->host_name.'</td><td>'.$h->example_url.'</td><td><form action="'.base_url().'host/detail/'.$h->id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
+                                                        echo '<tr><td>'.$h->host_id.'</td><td>'.$h->host_name.'</td><td>'.$h->links.'</td><td>'.$h->maybe_prod.'</td><td><form action="'.base_url().'host/detail/'.$h->host_id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
                                                     }
 
                                                        ?>

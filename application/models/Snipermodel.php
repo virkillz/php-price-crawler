@@ -1,10 +1,34 @@
 <?php
-Class Crawlmodel extends CI_Model
+Class Snipermodel extends CI_Model
 {
+
+  function Lazada_crawling_get_target()
+  {
+
+    $sql="SELECT * FROM `url_list` WHERE (`url` LIKE '%beli%') OR (`url` LIKE '%jual%') ORDER BY `is_extracted` DESC LIMIT 1";
+    $query = $this->db->query($sql);
+
+    if($query -> num_rows() == 1)
+    {
+      return $query->result();
+    }
+    else
+    {
+      return false;
+    }
+
+}
+
+
+
+
+//===================================
+
+
 
  function HostNotYetCrawl()
  {
-   $this->db->select('starter_url,id,prod_regex,cat_regex,blacklist_regex');
+   $this->db->select('starter_url,id,prod_regex');
    $this->db->where('is_crawled',0);
    $this->db->limit(1);
    $query = $this ->db->get('host');
@@ -53,7 +77,7 @@ function LinkNotYetCrawl($hostid)
   $this->db->join('host a', 'host_id=a.id', 'left');
   $this->db->where('url_list.is_crawled',0);
   $this->db->where('host_id',$hostid);
-  $this->db->order_by('is_category', 'DESC');
+  $this->db->order_by('url', 'RANDOM');
   $this->db->limit(1);
   $query = $this ->db->get('url_list');
   if($query -> num_rows() == 1)
@@ -103,11 +127,7 @@ function tag_is_extracted($id) {
 
   if($query -> num_rows() == 0)
   {
-    //$this->db->insert('url_list', $data);
-
-    $insert_query = $this->db->insert_string('url_list', $data);
-    $insert_query = str_replace('INSERT INTO','INSERT IGNORE INTO',$insert_query);
-    $this->db->query($insert_query);
+    $this->db->insert('url_list', $data);
     return TRUE;
   } else {
     return FALSE;

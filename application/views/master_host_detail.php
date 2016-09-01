@@ -74,6 +74,18 @@
                                               </div>
                                           </div>
                                           <div class="form-group">
+                                              <label class="col-sm-2 control-label">Category URL Regex</label>
+                                              <div class="col-sm-10">
+                                                <p class="form-control-static"><?php echo $details[0]->cat_regex; ?></p>
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
+                                              <label class="col-sm-2 control-label">Blacklist URL Regex</label>
+                                              <div class="col-sm-10">
+                                                <p class="form-control-static"><?php echo $details[0]->blacklist_regex; ?></p>
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
                                               <label class="col-sm-2 control-label">Already Crawled</label>
                                               <div class="col-sm-10">
                                                 <p class="form-control-static"><?php if ($details[0]->is_crawled==1) {echo "Yes";} else {echo "No";} ?></p>

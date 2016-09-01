@@ -39,6 +39,9 @@
                             <li>
                                 <a href="<?php echo base_url(); ?>scrap" class="waves-effect <?php if ($this->uri->segment(1)=='scrap') {echo "active";} ?>"><i class="md  md-track-changes"></i><span> Scrap Result </span></a>
                             </li>
+                            <li>
+                                <a href="<?php echo base_url(); ?>scrapsummary" class="waves-effect <?php if ($this->uri->segment(1)=='scrapsummary') {echo "active";} ?>"><i class="md  md-track-changes"></i><span> Scrap Summary </span></a>
+                            </li>
                             <!-- <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-mail"></i><span> Mail </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">

@@ -25,7 +25,7 @@ class Host extends Auth_Controller
         $this->load->view('sidebar', $session_data);
 
 
-        $data['hasil'] = $this->ourmodel->get_host_summary();
+        $data['hasil'] = $this->ourmodel->get_host();
         $this->load->view('master_host',$data);
     }
 
@@ -121,6 +121,8 @@ class Host extends Auth_Controller
              'prod_regex' => $this->input->post('regex'),
              'price_xpath' => $this->input->post('pricepath'),
              'is_crawled' => $this->input->post('iscrawled'),
+             'cat_regex' => $this->input->post('iscat'),
+             'blacklist_regex' => $this->input->post('blacklistregex'),
              'remarks' => $this->input->post('desc')
            );
 
@@ -156,6 +158,8 @@ class Host extends Auth_Controller
              'name_xpath' => $this->input->post('namepath'),
              'prod_regex' => $this->input->post('regex'),
              'price_xpath' => $this->input->post('pricepath'),
+             'cat_regex' => $this->input->post('iscat'),
+             'blacklist_regex' => $this->input->post('blacklistregex'),
              'remarks' => $this->input->post('desc')
            );
            $tryinsert = $this->ourmodel->insert_host($data);

@@ -6,64 +6,37 @@ if (!defined('BASEPATH')) {
 }
 
 //Not inherited from Auth_controller, so we can excecute this without login. Don't know why I should explain this.
-class Crawler extends CI_Controller
+class Sniper extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('crawlmodel', '', true);
+        $this->load->model('snipermodel', '', true);
     }
 
 
-    public function linkminer($hostid=0 )
-    //This is refer to script 1. The purpose is to gather link
-    //1. if no parameter, it will search random host to process.
-    //2. It will search new host not yet been crawled, if any, grab starter_url.
-    //3. If number 2 not exist, it will get random link from url_list.url to be crawled.
-    //4. It will grab all href content for every link.
-    //5. If blacklist_regex exist (not empty) and match, it will be ignored (escape foreach).
-    //6. If category_regex exist (not empty) and match, it will remark as is_cat=1
-    //7. If prod_regex exist (not empty) and match, it will remark as maybe_product=1
-    //8. store in url_list
+    public function lazada_crawling()
+    //Tujuan dari sniper lazada crawling adalah customized script untuk dapet data url produk sebanyak banyaknya dalam waktu sesingkat singkatnya.
     {
-      //1. if no parameter, it will search random host to process.
-      if ($hostid == 0) {
-          $hostid = $this->crawlmodel->RandomHost();
-      }
-
+      echo $this->db->last_query();
       $time_start = microtime(true);
+      //check if any website in host table not yet crawl
 
-      //2. It will search new host not yet been crawled, if any, grab starter_url.
-      $HostNotYetCrawl = $this->crawlmodel->HostNotYetCrawl();
-
-      if ($HostNotYetCrawl) {
-
-        //main ingredient
-          $url = $HostNotYetCrawl[0]->starter_url;
-          $hostid = $HostNotYetCrawl[0]->id;
-          $prod_regex = $HostNotYetCrawl[0]->prod_regex;
-          $cat_regex = $HostNotYetCrawl[0]->cat_regex;
-          $blacklist_regex = $HostNotYetCrawl[0]->blacklist_regex;
-        //tag even before process
-        $this->crawlmodel->HostTagCrawl($hostid);
-      } else {
-        //3. If number 2 not exist, it will get random link from url_list.url to be crawled.
-          $LinkNotYetCrawl = $this->crawlmodel->LinkNotYetCrawl($hostid);
+          $LinkNotYetCrawl = $this->crawlmodel->LinkNotYetCrawl(6);
           if ($LinkNotYetCrawl != false) {
               $url = $LinkNotYetCrawl[0]->url;
               $hostid = $LinkNotYetCrawl[0]->host_id;
               $prod_regex = $LinkNotYetCrawl[0]->prod_regex;
-              $cat_regex = $LinkNotYetCrawl[0]->cat_regex;
-              $blacklist_regex = $LinkNotYetCrawl[0]->blacklist_regex;
               echo $url;
               $this->crawlmodel->LinkTagCrawl($url);
           } else {
               echo 'all link already crawled, which is weird.';
               die();
           }
-      }
 
-        //4. It will grab all href content for every link.
+
+       //LET the mining begin!
         $parse = parse_url($url);
         $host = $parse['host'];
 
@@ -77,27 +50,7 @@ class Crawler extends CI_Controller
             $link = $node->getAttribute('href');
             if (strpos($link, $host) !== false) {
 
-
-              //5. If blacklist_regex exist (not empty) and match, it will be ignored (escape foreach).
-              if ($blacklist_regex != '') {
-                  if (preg_match($blacklist_regex, $link)) {
-                      continue;
-                  }
-              }
-
-              //6. If category_regex exist (not empty) and match, it will remark as is_cat=1
-              if ($cat_regex != '') {
-                  if (preg_match($cat_regex, $link)) {
-                      $is_category = 1;
-                  } else {
-                      $is_category = 0;
-                  }
-              } else {
-                  $is_category = 0;
-              }
-
-
-                    //7. If prod_regex exist (not empty) and match, it will remark as maybe_product=1
+                      //cek regex
                       if ($prod_regex != '') {
                           if (preg_match($prod_regex, $link)) {
                               $maybe_product = 1;
@@ -108,12 +61,17 @@ class Crawler extends CI_Controller
                           $maybe_product = 0;
                       }
 
-              //8. store in url_list
+                      //cek iscat
+                      if ((strpos($link,'jual') !== false) or (strpos($link,'beli') !== false)) {
+                          $iscat=1;
+                      } else {$iscat=1;}
+
                 $data = array(
                         'url' => $link,
                         'host_id' => $hostid,
                         'maybe_product' => $maybe_product,
-                        'parent_url' => $url
+                        'parent_url' => $url,
+                        'is_category' => $iscat
                       );
                 $try = $this->crawlmodel->insertLink($link, $data);
                 if ($try) {
