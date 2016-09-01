@@ -112,7 +112,7 @@
                                 <div class="portlet"><!-- /portlet heading -->
                                     <div class="portlet-heading">
                                         <h3 class="portlet-title text-dark text-uppercase">
-                                            Website Stats
+                                            URL composition
                                         </h3>
                                         <div class="portlet-widgets">
                                             <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
@@ -155,6 +155,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
+
                     Page rendered in <strong>{elapsed_time}</strong> seconds | 2015 © <?php echo MY_CONSTANT; ?>.
                 </footer>
 
@@ -363,8 +364,8 @@
                   this.createPlotGraph("#website-stats", uploads, downloads, plabels, pcolors, borderColor, bgColor);
 
                     //Pie graph data
-                    var pielabels = ["Series 1","Series 2","Series 3"];
-                    var datas = [20,30, 20];
+                    var pielabels = ["Url Collected","Product url","Data Extracted"];
+                    var datas = [<?php echo $alllink.','.$allpotprod.','.$allprod; ?>];
                     var colors = ["rgba(30, 136, 229, 0.7)", "rgba(41, 182, 246, 0.7)", "rgba(126, 87, 194, 0.7)"];
                     this.createPieGraph("#pie-chart #pie-chart-container", pielabels , datas, colors);
 

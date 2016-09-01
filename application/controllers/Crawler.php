@@ -55,7 +55,7 @@ class Crawler extends CI_Controller
               $prod_regex = $LinkNotYetCrawl[0]->prod_regex;
               $cat_regex = $LinkNotYetCrawl[0]->cat_regex;
               $blacklist_regex = $LinkNotYetCrawl[0]->blacklist_regex;
-              echo $url;
+              echo 'Current target : '.$url."<br><br> And this is The result: <br>";
               $this->crawlmodel->LinkTagCrawl($url);
           } else {
               echo 'all link already crawled, which is weird.';

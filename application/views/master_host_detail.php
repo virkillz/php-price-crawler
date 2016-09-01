@@ -1,4 +1,12 @@
-
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+<style>
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+</style>
 
 
 
@@ -91,28 +99,53 @@
                                                 <p class="form-control-static"><?php if ($details[0]->is_crawled==1) {echo "Yes";} else {echo "No";} ?></p>
                                               </div>
                                           </div>
-                                          <div class="form-group">
-                                              <label class="col-sm-2 control-label">Link Collected</label>
-                                              <div class="col-sm-10">
-                                                <a href="#"> <p class="form-control-static"><?php echo $alllink; ?> [detail]</p> </a>
-                                              </div>
-                                          </div>
-                                          <div class="form-group">
-                                              <label class="col-sm-2 control-label">Potential Product URL</label>
-                                              <div class="col-sm-10">
-                                                <a href="#"> <p class="form-control-static"><?php echo $allpotprod; ?> [detail]</p> </a>
-                                              </div>
-                                          </div>
-                                          <div class="form-group">
-                                              <label class="col-sm-2 control-label">Product Info Collected</label>
-                                              <div class="col-sm-10">
-                                                <a href="#"> <p class="form-control-static"><?php echo $allproduct; ?> [detail]</p> </a>
-                                              </div>
-                                          </div>
                                         </form>
                                     </div> <!-- panel-body -->
                                 </div> <!-- panel -->
                             </div> <!-- col -->
+                        </div> <!-- End row -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="portlet"><!-- /portlet heading -->
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark text-uppercase">
+                                            Website Stats
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet1"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div id="portlet1" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <canvas id="canvas"></canvas>
+                                                    <div class="row text-center m-t-30">
+                                                        <div class="col-sm-4">
+                                                            <h4 class="counter"><?php echo $alllink; ?></h4>
+                                                            <small class="text-muted"> Weekly Report</small>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <h4 class="counter"><?php echo $allpotprod; ?></h4>
+                                                            <small class="text-muted">Monthly Report</small>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <h4 class="counter"><?php echo $allproduct; ?></h4>
+                                                            <small class="text-muted">Yearly Report</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- /Portlet -->
+                            </div> <!-- end col -->
                         </div> <!-- End row -->
 
 
@@ -153,6 +186,40 @@
 
         <!-- CUSTOM JS -->
         <script src="<?php echo base_url(); ?>assets/js/jquery.app.js"></script>
-
+        <script>
+        var data = {
+            labels: ["Link Collected", "Product Page", "Product"],
+            datasets: [
+                {
+                    label: "<?php echo $details[0]->host_name; ?>",
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    data: [<?php echo $alllink.','.$allpotprod.','.$allproduct; ?>],
+                }
+            ]
+        };
+            window.onload = function() {
+                var ctx = document.getElementById("canvas").getContext("2d");
+                window.myBar= new Chart(ctx, {
+                      type: 'horizontalBar',
+                      data: data
+                  });
+            };
+        </script>
 	</body>
 </html>
