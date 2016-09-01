@@ -49,6 +49,9 @@ class Test extends Auth_Controller
         $elements = $xpath->query($xmen);
         if (!is_null($elements) && isset($elements[0]->nodeValue)) {
         echo $elements[0]->nodeValue;
+//         $this->load->view('test_view_result');
+//         echo '<pre><code class="language-markup">'.$doc->saveHTML()
+// .'</code></pre>';
       } else {echo 'cannot found information based on xpath';}
         echo '<br>Total execution time in seconds: ' . (microtime(true) - $time_start);
 

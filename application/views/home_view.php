@@ -81,6 +81,7 @@
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
+
                                     <div id="portlet1" class="panel-collapse collapse in">
                                         <div class="portlet-body">
                                             <div class="row">
@@ -203,8 +204,15 @@
         <script src="assets/assets/counterup/waypoints.min.js" type="text/javascript"></script>
         <script src="assets/assets/counterup/jquery.counterup.min.js" type="text/javascript"></script>
 
+
         <!-- CUSTOM JS -->
         <script src="assets/js/jquery.app.js"></script>
+
+        <!--Morris Chart-->
+        <script src="assets/assets/morris/morris.min.js"></script>
+        <script src="assets/assets/morris/raphael.min.js"></script>
+        <script src="assets/assets/morris/morris.init.js"></script>
+
 
         <!-- Dashboard -->
         <script src="assets/js/jquery.dashboard.js"></script>

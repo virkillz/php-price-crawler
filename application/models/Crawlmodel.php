@@ -96,10 +96,19 @@ function tag_is_extracted($id) {
    return $query->result();
  }
 
- function insertLink($data){
- $insert_query = $this->db->insert_string('url_list', $data);
-$insert_query = str_replace('INSERT INTO','INSERT IGNORE INTO',$insert_query);
-$this->db->query($insert_query);
+ function insertLink($url, $data){
+
+  $sql="SELECT id FROM url_list WHERE url = '$url'";
+  $query = $this->db->query($sql);
+
+  if($query -> num_rows() == 0)
+  {
+    $this->db->insert('url_list', $data);
+    return TRUE;
+  } else {
+    return FALSE;
+  }
+
  }
 
  function HostTagCrawl($id){

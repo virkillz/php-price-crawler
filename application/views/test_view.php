@@ -44,7 +44,7 @@
                                             <label class="col-md-2 control-label"></label>
                                                 <div class="col-md-2">
 
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light m-b-5">Add</button>
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light m-b-5">Test</button>
 
                                                 </div>
                                             </div>

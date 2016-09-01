@@ -25,7 +25,7 @@ class Host extends Auth_Controller
         $this->load->view('sidebar', $session_data);
 
 
-        $data['hasil'] = $this->ourmodel->get_host();
+        $data['hasil'] = $this->ourmodel->get_host_summary();
         $this->load->view('master_host',$data);
     }
 

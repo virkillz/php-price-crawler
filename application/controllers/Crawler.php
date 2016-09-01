@@ -12,15 +12,6 @@ class Crawler extends CI_Controller
         $this->load->model('crawlmodel','',TRUE);
     }
 
-    public function index()
-    {
-      echo 'What are you doing here?!';
-    }
-
-
-
-
-
     public function contentminer($hostid=0,$limit=10)
     {
       $time_start = microtime(true);
@@ -142,6 +133,8 @@ return $data;
                 $internalErrors = libxml_use_internal_errors(true);
                 $dom->loadHTMLfile($url);
                 libxml_use_internal_errors($internalErrors);
+                $countlink=0;
+                $insertlink=0;
                 foreach ($dom->getElementsByTagName('a') as $node)
                 {
                   $link = $node->getAttribute("href");
@@ -161,10 +154,14 @@ return $data;
                         'host_id' => $hostid,
                         'maybe_product' => $maybe_product
                       );
-                      $this->crawlmodel->insertLink($data);
-                      echo $link." has been inserted <br>";
+                      $try = $this->crawlmodel->insertLink($link,$data);
+                      if ($try) {echo $link." has been inserted.<br>"; $insertlink++;}
+                      $countlink++;
+
                   }
                 }
+                echo 'Total link found in this page: '.$countlink."<br>";
+                echo 'Total link inserted in this page: '.$insertlink.". The rest are duplicate <br>";                
                 echo '<br>Total execution time in seconds: ' . (microtime(true) - $time_start);
     }
 

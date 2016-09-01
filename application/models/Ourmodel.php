@@ -87,6 +87,21 @@ function count_all_product($hostid)
    return $query->result();
  }
 
+
+ function get_host_summary()
+ {
+$sql = "SELECT host_id,host_name, COUNT(url) as links, sum(if(maybe_product = 1,1,0)) as maybe_prod
+FROM (SELECT url_list.*,host.id as hosting_id,host.host_name as host_name
+FROM url_list
+LEFT JOIN host
+ON url_list.host_id=host.id) as hasil
+GROUP BY host_id;";
+
+$query = $this -> db -> query($sql);
+return $query->result();
+
+ }
+
  function get_host_detail($id)
  {
    $this-> db -> where('id',$id);
