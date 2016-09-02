@@ -75,8 +75,10 @@ class Crawler extends CI_Controller
         $insertlink = 0;
         foreach ($dom->getElementsByTagName('a') as $node) {
             $link = $node->getAttribute('href');
-            if (strpos($link, $host) !== false) {
-
+            if ((strpos($link, $host) !== false)or (preg_match('/\/.+/', $link))) {
+              if (preg_match('/^\/.+/', $link)) {
+                  $link='http://'.$host.$link;
+              }
 
               //5. If blacklist_regex exist (not empty) and match, it will be ignored (escape foreach).
               if ($blacklist_regex != '') {
@@ -171,8 +173,11 @@ class Crawler extends CI_Controller
                 }
             }
         }
-
-      echo '<br>Total execution time in seconds: '.(microtime(true) - $time_start);
+        $time = (microtime(true) - $time_start);
+        $perurl = $time/$limit;
+        echo '<br>On average, we extract data '.$perurl.'/url <br>';
+        echo 'Total execution time in seconds: '.(microtime(true) - $time_start).' for '.$limit. ' url.';
+        echo 'Which means you better ';
     }
 
 

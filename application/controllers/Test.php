@@ -27,6 +27,81 @@ class Test extends Auth_Controller
         $this->load->view('test_view',$data);
     }
 
+    public function crawling()
+    {
+        if ($this->session->userdata('locked')) {
+            $this->session->unset_userdata('locked');
+        }
+
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
+        $this->load->view('header', $data);
+        $this->load->view('topbar', $session_data);
+        $this->load->view('sidebar', $session_data);
+
+        $this->load->view('test_crawl',$data);
+    }
+
+    public function action_test_crawl()
+    {
+        $time_start = microtime(true);
+
+          $url=$_POST['url'];
+          $blacklist_regex=$_POST['isblacklist'];
+          $cat_regex=$_POST['iscat'];
+          $prod_regex=$_POST['isprod'];
+
+          //4. It will grab all href content for every link.
+          $parse = parse_url($url);
+          $host = $parse['host'];
+
+          $dom = new DOMDocument('1.0', 'UTF-8');
+          $internalErrors = libxml_use_internal_errors(true); //This is to prevent displaying error and put in log only
+          $dom->loadHTMLfile($url);
+          libxml_use_internal_errors($internalErrors); //This is to prevent displaying error
+          $countlink = 0;
+          $insertlink = 0;
+          foreach ($dom->getElementsByTagName('a') as $node) {
+              $link = $node->getAttribute('href');
+              if ((strpos($link, $host) !== false) or (preg_match('/\/.+/', $link))) {
+                if (preg_match('/^\/.+/', $link)) {
+                    $link='http://'.$host.$link;
+                }
+
+                echo $link."<br>";
+
+                //5. If blacklist_regex exist (not empty) and match, it will be ignored (escape foreach).
+                if ($blacklist_regex != '') {
+                    if (preg_match($blacklist_regex, $link)) {
+                      echo "IGNORED ---- <br>";
+                        continue;
+                    }
+                }
+
+                //6. If category_regex exist (not empty) and match, it will remark as is_cat=1
+                if ($cat_regex != '') {
+                    if (preg_match($cat_regex, $link)) {
+                        echo "CATEGORY ---- <br>";
+                    }
+                }
+
+
+                      //7. If prod_regex exist (not empty) and match, it will remark as maybe_product=1
+                        if ($prod_regex != '') {
+                            if (preg_match($prod_regex, $link)) {
+                                echo "MAYBE PRODUCT ---- <br>";
+                            }
+                        }
+
+                        echo "<br>";
+                  ++$countlink;
+              }
+          }
+          echo 'Total link found in this page: '.$countlink.'<br>';
+          echo '<br>Total execution time in seconds: '.(microtime(true) - $time_start);
+    }
+
+
     //----------------------------------------abaikan =----------------//
 
     public function action_test()
