@@ -11,10 +11,10 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="pull-left page-title">Manage Website</h4>
+                                <h4 class="pull-left page-title">Scrap Summary</h4>
                                 <ol class="breadcrumb pull-right">
                                     <li><a href="#"><?php echo MY_CONSTANT; ?></a></li>
-                                    <li class="active">Manage Website</li>
+                                    <li class="active">Scrap Summary</li>
                                 </ol>
                             </div>
                         </div>
@@ -22,20 +22,18 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <form action="<?php echo base_url(); ?>host/add_host"><button type="submit" class="btn btn-warning waves-effect waves-light m-b-5"> <i class="fa fa-plus"></i> <span> ADD NEW</span></button></form>
-
-                                    </div>
+                                  <div class="panel-heading">
+                                    <a href="<?php echo base_url();?>export"><button class="btn btn-success waves-effect waves-light m-b-5"> <i class="fa fa-download"></i> <span> Download All (.xls)</span></button></a>
+                                  </div>
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <table id="datatable" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th>Name</th>
-                                                            <th>Link Collected</th>
-                                                            <th>Product Link</th>
+                                                            <th>Website</th>
+                                                            <th>Product Collected</th>
+                                                            <th>Invalid Data</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -43,7 +41,7 @@
                                                     <?php
 
                                                     foreach ($hasil as $h) {
-                                                        echo '<tr><td>'.$h->host_id.'</td><td>'.$h->host_name.'</td><td>'.$h->links.'</td><td>'.$h->maybe_prod.'</td><td><form action="'.base_url().'host/detail/'.$h->host_id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
+                                                        echo '<tr><td>'.$h->host_name.'</td><td>'.$h->links.'</td><td>'.$h->invalid.'</td><td><form action="'.base_url().'host/detail/'.$h->host_id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
                                                     }
 
                                                        ?>

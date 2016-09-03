@@ -25,7 +25,7 @@ class Scrapsummary extends Auth_Controller
         $this->load->view('sidebar', $session_data);
 
 
-        $data['hasil'] = $this->ourmodel->get_host_summary();
+        $data['hasil'] = $this->ourmodel->get_scrap_summary();
         $this->load->view('scrap_summary',$data);
     }
 

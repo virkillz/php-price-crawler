@@ -12,8 +12,7 @@ class Host extends Auth_Controller
         $this->load->model('ourmodel','',TRUE);
     }
 
-    public function index()
-    {
+    public function index() {
         if ($this->session->userdata('locked')) {
             $this->session->unset_userdata('locked');
         }
@@ -47,6 +46,8 @@ class Host extends Auth_Controller
           $data['alllink']= $this->ourmodel->count_all_link($id);
           $data['allpotprod']= $this->ourmodel->count_all_potential($id);
           $data['allproduct']= $this->ourmodel->count_all_product($id);
+          $data['iscrawled']= $this->ourmodel->count_iscrawled($id);
+          $data['isscraped']= $this->ourmodel->count_isscraped($id);
           $this->load->view('master_host_detail',$data);
         } else {
           $data['message']="We cannot find the id you are looking for.";

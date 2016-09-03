@@ -129,15 +129,15 @@ canvas {
                                                     <div class="row text-center m-t-30">
                                                         <div class="col-sm-4">
                                                             <h4 class="counter"><?php echo $alllink; ?></h4>
-                                                            <small class="text-muted"> Weekly Report</small>
+                                                            <small class="text-muted"> All Links</small>
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <h4 class="counter"><?php echo $allpotprod; ?></h4>
-                                                            <small class="text-muted">Monthly Report</small>
+                                                            <small class="text-muted">All Product Page</small>
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <h4 class="counter"><?php echo $allproduct; ?></h4>
-                                                            <small class="text-muted">Yearly Report</small>
+                                                            <small class="text-muted">All Product Found</small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -188,7 +188,7 @@ canvas {
         <script src="<?php echo base_url(); ?>assets/js/jquery.app.js"></script>
         <script>
         var data = {
-            labels: ["Link Collected", "Product Page", "Product"],
+            labels: ["Link Collected", "Has been crawled","Has been scraped","Product Page", "Product"],
             datasets: [
                 {
                     label: "<?php echo $details[0]->host_name; ?>",
@@ -209,7 +209,7 @@ canvas {
                         'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1,
-                    data: [<?php echo $alllink.','.$allpotprod.','.$allproduct; ?>],
+                    data: [<?php echo $alllink.','.$iscrawled.','.$isscraped.','.$allpotprod.','.$allproduct; ?>],
                 }
             ]
         };

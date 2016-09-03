@@ -80,6 +80,21 @@ function count_all_product($hostid)
   return $query->num_rows();
 }
 
+function count_iscrawled($hostid)
+{
+  $this-> db -> where('host_id',$hostid);
+  $this-> db -> where('is_crawled',1);
+  $query = $this -> db -> get('url_list');
+  return $query->num_rows();
+}
+
+function count_isscraped($hostid)
+{
+  $this-> db -> where('host_id',$hostid);
+  $this-> db -> where('is_extracted',1);
+  $query = $this -> db -> get('url_list');
+  return $query->num_rows();
+}
 
  function get_host()
  {
@@ -87,6 +102,11 @@ function count_all_product($hostid)
    return $query->result();
  }
 
+ function get_crawl()
+ {
+   $query = $this -> db -> get('crawl_result');
+   return $query->result();
+ }
 
  function get_host_summary()
  {
@@ -99,8 +119,20 @@ GROUP BY host_id;";
 
 $query = $this -> db -> query($sql);
 return $query->result();
-
  }
+
+ function get_scrap_summary()
+ {
+$sql = "SELECT newtab.host_name,host_id, COUNT(url) as links, sum(if(price = '',1,0)) as invalid
+FROM (SELECT crawl_result.*,host.id as hostid, host.host_name
+FROM crawl_result
+LEFT JOIN host
+ON crawl_result.host_id=host.id) as newtab
+GROUP BY host_id;";
+$query = $this -> db -> query($sql);
+return $query->result();
+ }
+
 
  function get_host_detail($id)
  {
