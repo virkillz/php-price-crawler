@@ -76,6 +76,30 @@ canvas {
                                               </div>
                                           </div>
                                           <div class="form-group">
+                                              <label class="col-sm-2 control-label">Brand X-path</label>
+                                              <div class="col-sm-10">
+                                                <p class="form-control-static"><?php echo $details[0]->brand_xpath; ?></p>
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
+                                              <label class="col-sm-2 control-label">SKU X-path</label>
+                                              <div class="col-sm-10">
+                                                <p class="form-control-static"><?php echo $details[0]->sku_xpath; ?></p>
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
+                                              <label class="col-sm-2 control-label">Seller X-path</label>
+                                              <div class="col-sm-10">
+                                                <p class="form-control-static"><?php echo $details[0]->seller_xpath; ?></p>
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
+                                              <label class="col-sm-2 control-label">Category X-path</label>
+                                              <div class="col-sm-10">
+                                                <p class="form-control-static"><?php echo $details[0]->category_xpath; ?></p>
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
                                               <label class="col-sm-2 control-label">Product URL Regex</label>
                                               <div class="col-sm-10">
                                                 <p class="form-control-static"><?php echo $details[0]->prod_regex; ?></p>

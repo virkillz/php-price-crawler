@@ -73,21 +73,45 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-md-2 control-label">Brand Xpath</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="brandpath" value='<?php echo $details[0]->brand_xpath; ?>'>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Category Xpath</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="catpath" value='<?php echo $details[0]->category_xpath; ?>'>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Seller Xpath</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="sellerpath" value='<?php echo $details[0]->seller_xpath; ?>'>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">SKU Xpath</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="skupath" value='<?php echo $details[0]->sku_xpath; ?>'>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="col-md-2 control-label">Product URL Regex</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="regex"  value="<?php echo $details[0]->prod_regex; ?>">
+                                                    <input type="text" class="form-control" name="regex"  value='<?php echo $details[0]->prod_regex; ?>'>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Category URL Regex</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="iscat" value="<?php echo $details[0]->cat_regex; ?>">
+                                                    <input type="text" class="form-control" name="iscat" value='<?php echo $details[0]->cat_regex; ?>'>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Blacklist URL Regex</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="blacklistregex" value="<?php echo $details[0]->blacklist_regex; ?>">
+                                                    <input type="text" class="form-control" name="blacklistregex" value='<?php echo $details[0]->blacklist_regex; ?>'>
                                                 </div>
                                             </div>
                                             <div class="form-group">

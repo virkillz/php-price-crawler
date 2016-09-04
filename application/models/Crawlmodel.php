@@ -20,7 +20,6 @@ Class Crawlmodel extends CI_Model
 
  function getHostDetail($id)
  {
-   $this->db->select('host_name,name_xpath,price_xpath,prod_regex');
    $this->db->where('id',$id);
    $this->db->limit(1);
    $query = $this ->db->get('host');

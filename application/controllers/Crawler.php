@@ -14,8 +14,7 @@ class Crawler extends CI_Controller
         $this->load->model('crawlmodel', '', true);
     }
 
-
-    public function linkminer($hostid=0 )
+    public function linkminer($hostid = 0)
     //This is refer to script 1. The purpose is to gather link
     //1. if no parameter, it will search random host to process.
     //2. It will search new host not yet been crawled, if any, grab starter_url.
@@ -26,42 +25,42 @@ class Crawler extends CI_Controller
     //7. If prod_regex exist (not empty) and match, it will remark as maybe_product=1
     //8. store in url_list
     {
-      //1. if no parameter, it will search random host to process.
+        //1. if no parameter, it will search random host to process.
       if ($hostid == 0) {
           $hostid = $this->crawlmodel->RandomHost();
       }
 
-      $time_start = microtime(true);
+        $time_start = microtime(true);
 
       //2. It will search new host not yet been crawled, if any, grab starter_url.
       $HostNotYetCrawl = $this->crawlmodel->HostNotYetCrawl();
 
-      if ($HostNotYetCrawl) {
+        if ($HostNotYetCrawl) {
 
         //main ingredient
           $url = $HostNotYetCrawl[0]->starter_url;
-          $hostid = $HostNotYetCrawl[0]->id;
-          $prod_regex = $HostNotYetCrawl[0]->prod_regex;
-          $cat_regex = $HostNotYetCrawl[0]->cat_regex;
-          $blacklist_regex = $HostNotYetCrawl[0]->blacklist_regex;
+            $hostid = $HostNotYetCrawl[0]->id;
+            $prod_regex = $HostNotYetCrawl[0]->prod_regex;
+            $cat_regex = $HostNotYetCrawl[0]->cat_regex;
+            $blacklist_regex = $HostNotYetCrawl[0]->blacklist_regex;
         //tag even before process
         $this->crawlmodel->HostTagCrawl($hostid);
-      } else {
-        //3. If number 2 not exist, it will get random link from url_list.url to be crawled.
+        } else {
+            //3. If number 2 not exist, it will get random link from url_list.url to be crawled.
           $LinkNotYetCrawl = $this->crawlmodel->LinkNotYetCrawl($hostid);
-          if ($LinkNotYetCrawl != false) {
-              $url = $LinkNotYetCrawl[0]->url;
-              $hostid = $LinkNotYetCrawl[0]->host_id;
-              $prod_regex = $LinkNotYetCrawl[0]->prod_regex;
-              $cat_regex = $LinkNotYetCrawl[0]->cat_regex;
-              $blacklist_regex = $LinkNotYetCrawl[0]->blacklist_regex;
-              echo 'Current target : '.$url."<br><br> And this is The result: <br>";
-              $this->crawlmodel->LinkTagCrawl($url);
-          } else {
-              echo 'all link already crawled, which is weird.';
-              die();
-          }
-      }
+            if ($LinkNotYetCrawl != false) {
+                $url = $LinkNotYetCrawl[0]->url;
+                $hostid = $LinkNotYetCrawl[0]->host_id;
+                $prod_regex = $LinkNotYetCrawl[0]->prod_regex;
+                $cat_regex = $LinkNotYetCrawl[0]->cat_regex;
+                $blacklist_regex = $LinkNotYetCrawl[0]->blacklist_regex;
+                echo 'Current target : '.$url.'<br><br> And this is The result: <br>';
+                $this->crawlmodel->LinkTagCrawl($url);
+            } else {
+                echo 'all link already crawled, which is weird.';
+                die();
+            }
+        }
 
         //4. It will grab all href content for every link.
         $parse = parse_url($url);
@@ -75,10 +74,10 @@ class Crawler extends CI_Controller
         $insertlink = 0;
         foreach ($dom->getElementsByTagName('a') as $node) {
             $link = $node->getAttribute('href');
-            if ((strpos($link, $host) !== false)or (preg_match('/\/.+/', $link))) {
-              if (preg_match('/^\/.+/', $link)) {
-                  $link='http://'.$host.$link;
-              }
+            if ((strpos($link, $host) !== false) or (preg_match('/\/.+/', $link))) {
+                if (preg_match('/^\/.+/', $link)) {
+                    $link = 'http://'.$host.$link;
+                }
 
               //5. If blacklist_regex exist (not empty) and match, it will be ignored (escape foreach).
               if ($blacklist_regex != '') {
@@ -98,7 +97,6 @@ class Crawler extends CI_Controller
                   $is_category = 0;
               }
 
-
                     //7. If prod_regex exist (not empty) and match, it will remark as maybe_product=1
                       if ($prod_regex != '') {
                           if (preg_match($prod_regex, $link)) {
@@ -115,7 +113,7 @@ class Crawler extends CI_Controller
                         'url' => $link,
                         'host_id' => $hostid,
                         'maybe_product' => $maybe_product,
-                        'parent_url' => $url
+                        'parent_url' => $url,
                       );
                 $try = $this->crawlmodel->insertLink($link, $data);
                 if ($try) {
@@ -129,7 +127,6 @@ class Crawler extends CI_Controller
         echo 'Total link inserted in this page: '.$insertlink.'. The rest are duplicate <br>';
         echo '<br>Total execution time in seconds: '.(microtime(true) - $time_start);
     }
-
 
     public function contentminer($hostid = 0, $limit = 10)
     //This is, we refer as script 2. The sole purpose is to get the content (from previously tagged 'maybe_product' by script 1) and save to database
@@ -146,6 +143,10 @@ class Crawler extends CI_Controller
         if ($hostinfo) {
             $name_xpath = $hostinfo[0]->name_xpath;
             $price_xpath = $hostinfo[0]->price_xpath;
+            $brand_xpath = $hostinfo[0]->brand_xpath;
+            $category_xpath = $hostinfo[0]->category_xpath;
+            $sku_xpath = $hostinfo[0]->sku_xpath;
+            $seller_xpath = $hostinfo[0]->seller_xpath;
             $format_regex = $hostinfo[0]->prod_regex;
 
             $target = $this->crawlmodel->getExtractTarget($hostid, $limit);
@@ -155,35 +156,35 @@ class Crawler extends CI_Controller
 
                 //match with regex
                 if ($format_regex != '') {
-            if (preg_match($format_regex, $url->url)) {
-                echo $url->url.' match regex <br>';
+                    if (preg_match($format_regex, $url->url)) {
+                        echo $url->url.' contain product data: <br>';
                 // DO THE EXTRACTION
-                $extract = $this->extractInfo($url->url, $namepath, $pricepath);
-                $extract['url'] = $url->url;
-                $extract['url_list_id'] = $url->id;
-                $extract['host_id'] = $hostid;
-                $this->crawlmodel->insertCrawl($extract);
-                $this->crawlmodel->tag_is_extracted($url->idx);
-            } else {
-                echo $url->url.' NOT match regex<br>';
-              $this->crawlmodel->tag_is_extracted($url->idx);
-            }
+                $extract = $this->extractInfo($url->url, $namepath, $pricepath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath);
+                        $extract['url'] = $url->url;
+                        $extract['url_list_id'] = $url->idx;
+                        $extract['host_id'] = $hostid;
+                        $this->crawlmodel->insertCrawl($extract);
+                        $this->crawlmodel->tag_is_extracted($url->idx);
+                        var_dump($extract);
+                        echo "<br><br><br>";
+                    } else {
+                        echo $url->url.' NOT match regex<br>';
+                        $this->crawlmodel->tag_is_extracted($url->idx);
+                    }
                 } else {
                     echo $url->url.'<br>';
                 }
             }
         }
         $time = (microtime(true) - $time_start);
-        $perurl = $time/$limit;
+        $perurl = $time / $limit;
         echo '<br>On average, we extract data '.$perurl.'/url <br>';
-        echo 'Total execution time in seconds: '.(microtime(true) - $time_start).' for '.$limit. ' url.';
+        echo 'Total execution time in seconds: '.(microtime(true) - $time_start).' for '.$limit.' url.';
         echo 'Which means you better ';
     }
 
-
-
 //THE MOST IMPORTANT OF ALLL
-public function extractInfo($url, $namepath, $pricepath)
+public function extractInfo($url, $namepath, $pricepath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath)
 //This is main algoritm to extract info from url to get the data based on its xpath.
 {
     $doc = new DOMDocument('1.0', 'UTF-8');
@@ -201,20 +202,61 @@ public function extractInfo($url, $namepath, $pricepath)
             $data['name'] = '';
         }
 
-  //get price
-  $price = $xpath->query($pricepath);
+        //get price
+        $price = $xpath->query($pricepath);
         if (!is_null($price) && isset($price[0]->nodeValue)) {
             $data['price'] = filter_var($price[0]->nodeValue, FILTER_SANITIZE_NUMBER_INT);
         } else {
             $data['price'] = '';
         }
+
+        //get brand
+        if ($brand_xpath!='')
+{        $brand = $xpath->query($brand_xpath);
+        if($brand!=false)
+        { if (!is_null($brand) && isset($brand[0]->nodeValue)) {
+            $data['brand'] = $brand[0]->nodeValue;
+        } else {
+            $data['brand'] = '';
+        }}}
+
+        //get sku
+        if ($sku_xpath!='')
+{         $sku = $xpath->query($sku_xpath);
+         if ($sku!=false)
+        {if (!is_null($sku) && isset($sku[0]->nodeValue)) {
+            $data['sku'] = $sku[0]->nodeValue;
+        } else {
+            $data['sku'] = '';
+        }}}
+
+        //get category
+        if ($category_xpath!='')
+{        $category = $xpath->query($category_xpath);
+        if ($category!=false)
+        {if (!is_null($category) && isset($category[0]->nodeValue)) {
+            $data['category'] = $category[0]->nodeValue;
+        } else {
+            $data['category'] = '';
+        }}}
+
+        //get seller
+        if ($seller_xpath!='')
+{        $seller = $xpath->query($seller_xpath);
+        if ($category!=false)
+        {if (!is_null($seller) && isset($seller[0]->nodeValue)) {
+            $data['seller'] = $seller[0]->nodeValue;
+        } else {
+            $data['seller'] = '';
+        }}}
+
+
     } else {
         $data = array('name' => '', 'price' => '');
     };
 
     return $data;
 }
-
 
     //wiping the old product already marked as maybe_product =0
     public function maybe_product_exe($hostid)

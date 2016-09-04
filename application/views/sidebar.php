@@ -28,25 +28,35 @@
                                 <a href="<?php echo base_url(); ?>home" class="waves-effect <?php if ($this->uri->segment(1)=='home') {echo "active";} ?>"><i class="md md-home"></i><span> Dashboard </span></a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url(); ?>test" class="waves-effect <?php if ($this->uri->segment(1)=='test') {echo "active";} ?>"><i class="md md-done-all"></i><span> Parsing Test </span></a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(); ?>testcrawl" class="waves-effect <?php if ($this->uri->segment(1)=='testcrawl') {echo "active";} ?>"><i class="md md-polymer"></i><span> Crawling Test </span></a>
-                            </li>
-                            <li>
                                 <a href="<?php echo base_url(); ?>host" class="waves-effect <?php if ($this->uri->segment(1)=='host') {echo "active";} ?>"><i class="md md-dashboard"></i><span> Manage Website </span></a>
                             </li>
-                            <li>
-                                <a href="<?php echo base_url(); ?>links/all" class="waves-effect <?php if ($this->uri->segment(1)=='links') {echo "active";} ?>"><i class="md md-link"></i><span> Manage Links </span></a>
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='test' or $this->uri->segment(1)=='testcrawl') {echo "active";} ?>"><i class="md md-polymer"></i> <span> Test </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="<?php echo base_url(); ?>test">Scraping Test</a></li>
+                                    <li><a href="<?php echo base_url(); ?>testcrawl">Crawling Test</a></li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="<?php echo base_url(); ?>scrap" class="waves-effect <?php if ($this->uri->segment(1)=='scrap') {echo "active";} ?>"><i class="md  md-track-changes"></i><span> Scrap Result </span></a>
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='scrap' or $this->uri->segment(1)=='links') {echo "active";} ?>"><i class="md md-link"></i> <span> Result</span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="<?php echo base_url(); ?>scrap">Scrapping Result</a></li>
+                                    <li><a href="<?php echo base_url(); ?>links/all">Crawling Result</a></li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="<?php echo base_url(); ?>crawlsummary" class="waves-effect <?php if ($this->uri->segment(1)=='crawlsummary') {echo "active";} ?>"><i class="md  md-view-list"></i><span> Crawl Summary </span></a>
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='crawlsummary' or $this->uri->segment(1)=='scrapsummary') {echo "active";} ?>"><i class="md md-view-list"></i> <span> Summary </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="<?php echo base_url(); ?>crawlsummary">Scrapping Summary</a></li>
+                                    <li><a href="<?php echo base_url(); ?>scrapsummary">Crawling Summary</a></li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="<?php echo base_url(); ?>scrapsummary" class="waves-effect <?php if ($this->uri->segment(1)=='scrapsummary') {echo "active";} ?>"><i class="md   md-local-convenience-store"></i><span> Scrapping Summary </span></a>
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='export') {echo "active";} ?>"><i class="md md-file-download"></i> <span> Export </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="<?php echo base_url(); ?>export/scrapexport">Scrapping Data</a></li>
+                                    <li><a href="<?php echo base_url(); ?>export/crawlexport">Crawling Data</a></li>
+                                </ul>
                             </li>
                             <!-- <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-mail"></i><span> Mail </span><span class="pull-right"><i class="md md-add"></i></span></a>

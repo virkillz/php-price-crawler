@@ -96,6 +96,20 @@ function count_isscraped($hostid)
   return $query->num_rows();
 }
 
+function download_scrap_result($where1,$where2)
+{
+  $sql = "SELECT id,name,price,url FROM crawl_result WHERE 1=1".$where1.$where2;
+  $query = $this -> db -> query($sql);
+  return $query->result();
+}
+
+function download_crawl_result($where1,$where2,$where3,$where4,$where5)
+{
+  $sql = "SELECT * FROM url_list WHERE 1=1".$where1.$where2.$where3.$where4.$where5;
+  $query = $this -> db -> query($sql);
+  return $query->result();
+}
+
  function get_host()
  {
    $query = $this -> db -> get('host');
