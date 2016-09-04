@@ -68,25 +68,25 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Brand Xpath</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="brandpath" placeholder="Example: //*[@id='our_price_display']" required>
+                                                    <input type="text" class="form-control" name="brandpath" placeholder="Example: //*[@id='our_price_display']">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Category Xpath</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="catpath" placeholder="Example: //*[@id='our_price_display']" required>
+                                                    <input type="text" class="form-control" name="catpath" placeholder="Example: //*[@id='our_price_display']">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">Seller Xpath</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="sellerpath" placeholder="Example: //*[@id='our_price_display']" required>
+                                                    <input type="text" class="form-control" name="sellerpath" placeholder="Example: //*[@id='our_price_display']">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label">SKU Xpath</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control" name="skupath" placeholder="Example: //*[@id='our_price_display']" required>
+                                                    <input type="text" class="form-control" name="skupath" placeholder="Example: //*[@id='our_price_display']">
                                                 </div>
                                             </div>
                                             <div class="form-group">

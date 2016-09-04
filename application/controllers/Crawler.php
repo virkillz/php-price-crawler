@@ -74,14 +74,19 @@ class Crawler extends CI_Controller
         $insertlink = 0;
         foreach ($dom->getElementsByTagName('a') as $node) {
             $link = $node->getAttribute('href');
-            if ((strpos($link, $host) !== false) or (preg_match('/\/.+/', $link))) {
+
+
+            if ((strpos($link, $host.'.') !== false) or (preg_match('/\/.+/', $link))) {
                 if (preg_match('/^\/.+/', $link)) {
                     $link = 'http://'.$host.$link;
                 }
 
+            echo $link.' has been inserted.<br>';
+
               //5. If blacklist_regex exist (not empty) and match, it will be ignored (escape foreach).
               if ($blacklist_regex != '') {
                   if (preg_match($blacklist_regex, $link)) {
+                    echo "---BLACKLIST DETECTED<br>";
                       continue;
                   }
               }
@@ -90,6 +95,7 @@ class Crawler extends CI_Controller
               if ($cat_regex != '') {
                   if (preg_match($cat_regex, $link)) {
                       $is_category = 1;
+                        echo "---CATEGORY DETECTED<br>";
                   } else {
                       $is_category = 0;
                   }
@@ -101,6 +107,7 @@ class Crawler extends CI_Controller
                       if ($prod_regex != '') {
                           if (preg_match($prod_regex, $link)) {
                               $maybe_product = 1;
+                                echo "---PRODUCT DETECTED<br>";
                           } else {
                               $maybe_product = 0;
                           }
@@ -108,19 +115,22 @@ class Crawler extends CI_Controller
                           $maybe_product = 0;
                       }
 
+
               //8. store in url_list
                 $data = array(
                         'url' => $link,
                         'host_id' => $hostid,
                         'maybe_product' => $maybe_product,
                         'parent_url' => $url,
+                        'is_category' => $is_category,
                       );
                 $try = $this->crawlmodel->insertLink($link, $data);
                 if ($try) {
-                    echo $link.' has been inserted.<br>';
                     ++$insertlink;
-                }
+                    echo "---INSERTED<br>";
+                } else {echo "---DUPLICATE DETECTED<br>";}
                 ++$countlink;
+                                  echo "<br>";
             }
         }
         echo 'Total link found in this page: '.$countlink.'<br>';
