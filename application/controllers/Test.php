@@ -27,6 +27,21 @@ class Test extends Auth_Controller
         $this->load->view('test_view',$data);
     }
 
+    public function dumphtml()
+    {
+      $url="http://tokopedia.com";
+      $dom = new DOMDocument('1.0', 'UTF-8');
+      $internalErrors = libxml_use_internal_errors(true); //This is to prevent displaying error and put in log only
+      $dom->loadHTMLfile($url);
+      libxml_use_internal_errors($internalErrors); //This is to prevent displaying error
+      $somestring = $dom->saveHTML();
+      $somestring = htmlspecialchars($somestring);
+
+      echo $somestring;
+
+
+    }
+
     public function crawling()
     {
         if ($this->session->userdata('locked')) {
@@ -111,8 +126,8 @@ class Test extends Auth_Controller
 
       $file= $_POST['url'];
       $xmen = $_POST['xpath'];
-      echo "Target : ".$file."<br>";
-      echo "X-path : ".$xmen."<br>";
+      $data['message'] = "Target : ".$file."<br>";
+      $data['message'] .= "X-path : ".$xmen."<br>";
       $doc = new DOMDocument('1.0', 'UTF-8');
 
       $internalErrors = libxml_use_internal_errors(true);
@@ -123,16 +138,28 @@ class Test extends Auth_Controller
 
         $elements = $xpath->query($xmen);
         if (!is_null($elements) && isset($elements[0]->nodeValue)) {
-        echo $elements[0]->nodeValue;
-//         $this->load->view('test_view_result');
-//         echo '<pre><code class="language-markup">'.$doc->saveHTML()
-// .'</code></pre>';
-      } else {echo 'cannot found information based on xpath';}
-        echo '<br>Total execution time in seconds: ' . (microtime(true) - $time_start);
+        $data['message'] .= $elements[0]->nodeValue;
+      } else {$data['message'] .= 'cannot found information based on xpath';}
 
+      $session_data = $this->session->userdata('logged_in');
+      $data['username'] = $session_data['username'];
+      $this->load->view('header', $data);
+      $this->load->view('topbar', $session_data);
+      $this->load->view('sidebar', $session_data);
+      $somestring = $doc->saveHTML();
+      $somestring = htmlspecialchars($somestring);
+
+      $data['message'] .= 'Source Code: <br><pre><code class="language-markup" id="bar">'.$somestring.'</code></pre>';
+
+      $data['message'] .=  '<button class="btn" data-clipboard-target="#bar">
+                                Copy to clipboard
+                            </button>';
+
+      $data['message'] .= '<br>Total execution time in seconds: ' . (microtime(true) - $time_start);
       } else {
-        echo 'cannot open the URL, please check in the browser.';
+        $data['message'] .= 'cannot open the URL, please check in the browser.';
       };
+      $this->load->view('blank',$data);
     }
     //
     // public function insert_host()

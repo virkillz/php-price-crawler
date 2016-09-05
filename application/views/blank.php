@@ -1,5 +1,7 @@
 
-
+<link href="<?php echo base_url(); ?>assets/css/prism.css" rel="stylesheet" />
+<script src="<?php echo base_url(); ?>assets/js/prism.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
 
 
             <!-- ============================================================== -->
@@ -12,7 +14,7 @@
 
                         <!-- Page-Title -->
                         <div class="row">
-                          <p><?php echo $message; ?></p>
+                          <?php echo $message; ?>
                         </div>
 
 

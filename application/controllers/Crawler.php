@@ -168,12 +168,14 @@ class Crawler extends CI_Controller
                 if ($format_regex != '') {
                     if (preg_match($format_regex, $url->url)) {
                         echo $url->url.' contain product data: <br>';
-                // DO THE EXTRACTION
-                $extract = $this->extractInfo($url->url, $namepath, $pricepath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath);
-                        $extract['url'] = $url->url;
-                        $extract['url_list_id'] = $url->idx;
-                        $extract['host_id'] = $hostid;
-                        $this->crawlmodel->insertCrawl($extract);
+                        // DO THE EXTRACTION
+                        $extract = $this->extractInfo($url->url, $namepath, $pricepath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath);
+                        if ($extract['name']!='') {
+                          $extract['url'] = $url->url;
+                          $extract['url_list_id'] = $url->idx;
+                          $extract['host_id'] = $hostid;
+                          $this->crawlmodel->insertCrawl($extract);
+                        }
                         $this->crawlmodel->tag_is_extracted($url->idx);
                         var_dump($extract);
                         echo "<br><br><br>";
@@ -182,6 +184,20 @@ class Crawler extends CI_Controller
                         $this->crawlmodel->tag_is_extracted($url->idx);
                     }
                 } else {
+                    //tandanya info tentang format produk ga ada dari awal. ya sudah asal sikat saja
+                    $extract = $this->extractInfo($url->url, $namepath, $pricepath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath);
+                    if ($extract['name']!='') {
+                      $extract['url'] = $url->url;
+                      $extract['url_list_id'] = $url->idx;
+                      $extract['host_id'] = $hostid;
+                      $this->crawlmodel->insertCrawl($extract);
+                    }
+                    $this->crawlmodel->tag_is_extracted($url->idx);
+                    var_dump($extract);
+                    echo "<br><br><br>";
+
+
+
                     echo $url->url.'<br>';
                 }
             }
