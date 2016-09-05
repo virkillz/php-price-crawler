@@ -170,7 +170,7 @@ class Crawler extends CI_Controller
                         echo $url->url.' contain product data: <br>';
                         // DO THE EXTRACTION
                         $extract = $this->extractInfo($url->url, $namepath, $pricepath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath);
-                        if ($extract['name']!='') {
+                        if ($extract['price']!='') {
                           $extract['url'] = $url->url;
                           $extract['url_list_id'] = $url->idx;
                           $extract['host_id'] = $hostid;
@@ -186,7 +186,7 @@ class Crawler extends CI_Controller
                 } else {
                     //tandanya info tentang format produk ga ada dari awal. ya sudah asal sikat saja
                     $extract = $this->extractInfo($url->url, $namepath, $pricepath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath);
-                    if ($extract['name']!='') {
+                    if ($extract['price']!='') {
                       $extract['url'] = $url->url;
                       $extract['url_list_id'] = $url->idx;
                       $extract['host_id'] = $hostid;
