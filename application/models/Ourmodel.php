@@ -17,6 +17,13 @@ function getScrapResult()
   return $query->result();
 }
 
+function get_host_search_not_empty()
+{
+  $this->db->where('search_pattern !=','');
+  $query = $this -> db -> get('host');
+  return $query->result();
+}
+
 function getTotalHost()
 {
   return $this->db->count_all('host');
@@ -121,6 +128,16 @@ function download_crawl_result($where1,$where2,$where3,$where4,$where5)
    $query = $this -> db -> get('crawl_result');
    return $query->result();
  }
+
+function get_keyword_summary()
+{
+  $sql="SELECT keyword, sum(if(url_list_id != 0,1,0)) as jumlah_link,sum(if(crawl_result_id != 0,1,0)) as jumlah_produk
+FROM keyword
+GROUP BY keyword;";
+$query = $this -> db -> query($sql);
+return $query->result();
+}
+
 
  function get_host_summary()
  {

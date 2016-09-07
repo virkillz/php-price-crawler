@@ -355,8 +355,8 @@
                 //initializing various charts and components
                 Dashboard.prototype.init = function() {
                   //plot graph data
-                  var uploads = [[0, 9], [1, 8], [2, 5], [3, 8], [4, 5], [5, 14], [6, 10]];
-                  var downloads = [[0, 5], [1, 12], [2,4], [3, 3], [4, 12], [5, 11], [6, 14]];
+                  var uploads = [[0, 325], [1, 340], [2, 360], [3, 370], [4, 390], [5, 400], [6, 460]];
+                  var downloads = [[0, 425], [1, 440], [2, 460], [3, 470], [4, 490], [5, 500], [6, 560]];
                   var plabels = ["Visits", "Pages/Visit"];
                   var pcolors = ['#317eeb', '#29b6f6'];
                   var borderColor = '#fff';

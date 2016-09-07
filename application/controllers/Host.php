@@ -128,7 +128,8 @@ class Host extends Auth_Controller
              'is_crawled' => $this->input->post('iscrawled'),
              'cat_regex' => $this->input->post('iscat'),
              'blacklist_regex' => $this->input->post('blacklistregex'),
-             'remarks' => $this->input->post('desc')
+             'remarks' => $this->input->post('desc'),
+             'search_pattern' => $this->input->post('searchpat')
            );
 
           $this->ourmodel->update_host($id,$data);
@@ -169,7 +170,8 @@ class Host extends Auth_Controller
              'seller_xpath' => $this->input->post('sellerpath'),
              'cat_regex' => $this->input->post('iscat'),
              'blacklist_regex' => $this->input->post('blacklistregex'),
-             'remarks' => $this->input->post('desc')
+             'remarks' => $this->input->post('desc'),
+             'search_pattern' => $this->input->post('searchpat')
            );
            $tryinsert = $this->ourmodel->insert_host($data);
            if ($tryinsert!=false) {

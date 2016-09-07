@@ -115,6 +115,13 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-md-2 control-label">Search URL Pattern</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="searchpat" placeholder="example: http://tokopedia.com/search={{namaproduk}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label class="col-sm-2 control-label">Has been Crawled</label>
                                                 <div class="col-sm-10">
                                                     <select class="form-control" name="iscrawled">

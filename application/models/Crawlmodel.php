@@ -51,6 +51,7 @@ function LinkNotYetCrawl($hostid)
   $this->db->select('*');
   $this->db->join('host a', 'host_id=a.id', 'left');
   $this->db->where('url_list.is_crawled',0);
+  $this->db->where('url_list.keyword','');
   $this->db->where('host_id',$hostid);
   $this->db->order_by('is_category', 'DESC');
   $this->db->limit(1);
@@ -114,6 +115,25 @@ function tag_is_extracted($id) {
 
  }
 
+ function insert_link_from_search($url, $data){
+
+  $sql="SELECT id FROM url_list WHERE url = '$url' LIMIT 1";
+  $query = $this->db->query($sql);
+
+  if($query -> num_rows() == 0)
+  {
+    $insert_query = $this->db->insert_string('url_list', $data);
+    $insert_query = str_replace('INSERT INTO','INSERT IGNORE INTO',$insert_query);
+    $this->db->query($insert_query);
+    return $this->db->insert_id();
+  } else {
+    $hasil = $query->result();
+    return $hasil[0]->id;
+  }
+
+ }
+
+
  function HostTagCrawl($id){
    $sql = "
    UPDATE `host` SET `is_crawled`=1 WHERE id='$id';
@@ -156,6 +176,12 @@ function insertCrawl($data) {
   $this->db->insert('crawl_result',$data);
 }
 
+function insert_keyword($data) {
+  //$this->db->insert('keyword',$data);
+  $insert_query = $this->db->insert_string('keyword', $data);
+  $insert_query = str_replace('INSERT INTO','INSERT IGNORE INTO',$insert_query);
+  $this->db->query($insert_query);
+}
 
 function getZeroMaybe($hostid){
   $this -> db -> where('host_id', $hostid);

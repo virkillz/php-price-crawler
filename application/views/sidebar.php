@@ -30,11 +30,15 @@
                             <li>
                                 <a href="<?php echo base_url(); ?>host" class="waves-effect <?php if ($this->uri->segment(1)=='host') {echo "active";} ?>"><i class="md md-dashboard"></i><span> Manage Website </span></a>
                             </li>
+                            <li>
+                                <a href="<?php echo base_url(); ?>managesearch" class="waves-effect <?php if ($this->uri->segment(1)=='managesearch') {echo "active";} ?>"><i class="md md-search"></i><span> Manage Search </span></a>
+                            </li>
                             <li class="has_sub">
                                 <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='test' or $this->uri->segment(1)=='testcrawl') {echo "active";} ?>"><i class="md md-polymer"></i> <span> Test </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="<?php echo base_url(); ?>test">Scraping Test</a></li>
                                     <li><a href="<?php echo base_url(); ?>testcrawl">Crawling Test</a></li>
+                                    <li><a href="<?php echo base_url(); ?>test_search">Search Test</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">

@@ -108,6 +108,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-md-2 control-label">Search URL Pattern</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" name="searchpat" placeholder="example: http://tokopedia.com/search={{namaproduk}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="col-md-2 control-label">Description</label>
                                                 <div class="col-md-10">
                                                   <div class="col-md-10">

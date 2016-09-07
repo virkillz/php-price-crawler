@@ -12,6 +12,121 @@ class Crawler extends CI_Controller
     {
         parent::__construct();
         $this->load->model('crawlmodel', '', true);
+        $this->load->model('ourmodel', '', true);
+    }
+
+    public function searchcrawler()
+    {
+      /*
+          1. Get the search keyword and turn into + concat
+          2. get list of host from database. loop!
+          3. execute! get link from each page.
+          4. if found product link, input product link to url_list . (check if already exist, if exist, get the id, if not exist, insert and return back the new id).
+          5. insert keyword and link id to keyword table.
+          6. if found next link, put into url_list and mark as is_search=1.
+      */
+      $time_start = microtime(true);
+      $keyword_awal=$this->input->post('keyword');
+      $keyword=preg_replace('/\s/','+',$keyword_awal);
+      $hosts = $this->ourmodel->get_host_search_not_empty();
+
+      foreach ($hosts as $host) {
+      echo $hostid = $host->id;
+      echo '<br>';
+      echo $prod_regex = $host->prod_regex;
+      $blacklist_regex = $host->blacklist_regex;
+      echo '<br>';
+      $search_pattern = $host->search_pattern;
+      echo $url = preg_replace('/\{\{keyword\}\}/',$keyword,$search_pattern);
+      echo '<br>';
+      echo '<br>-----------------<br>';
+      echo 'This is the result :<br>';
+
+      $parse = parse_url($url);
+      $host = $parse['host'];
+
+      $dom = new DOMDocument('1.0', 'UTF-8');
+      $internalErrors = libxml_use_internal_errors(true); //This is to prevent displaying error and put in log only
+      $dom->loadHTMLfile($url);
+      libxml_use_internal_errors($internalErrors); //This is to prevent displaying error
+      foreach ($dom->getElementsByTagName('a') as $node) {
+          $link = $node->getAttribute('href');
+          if ((strpos($link, $host) !== false) or (preg_match('/^\/.+/', $link))) {
+            //if link are relative, make it absolute
+            if (preg_match('/^\/.+/', $link)) {
+                $link='http://'.$host.$link;
+            }
+
+            //5. If blacklist_regex exist (not empty) and match, it will be ignored (escape foreach).
+            if ($blacklist_regex != '') {
+                if (preg_match($blacklist_regex, $link)) {
+                    continue;
+                }
+            }
+
+            $data = array(
+                    'url' => $link,
+                    'host_id' => $hostid,
+                    'parent_url' => $url,
+                    'keyword' => $keyword_awal
+                  );
+
+
+            //if it is page, say it is page.
+            if (preg_match('/page/', $link)) {
+                echo $link."<br>";
+                echo 'NEXT PAGE DETECTED';
+                  //masukin ke KATEGORI
+                  $data['maybe_product'] = 0;
+                  $this->crawlmodel->insertLink($link, $data);
+            }
+
+                  //7. If prod_regex exist (not empty) and match, it will remark as maybe_product=1
+            if ($prod_regex != '') {
+                if (preg_match($prod_regex, $link)) {
+                    echo $link."<br>";
+                    echo "MAYBE PRODUCT ---- <br>";
+                $data['maybe_product'] = 1;
+                $try = $this->crawlmodel->insert_link_from_search($link, $data);
+                $datax = array(
+                  'keyword' => $keyword_awal,
+                  'url_list_id' => $try
+                );
+                echo $try."<------- NOMOR link ID <br>";
+                $this->crawlmodel->insert_keyword($datax);
+                }
+            }
+
+          }
+      }
+    //  echo 'Total link found in this page: '.$countlink.'<br>';
+      echo '<br>Total execution time in seconds: '.(microtime(true) - $time_start);
+
+      }
+
+    }
+
+    public function searchnext()
+    {
+      /*  the purpose is to follow up initial search function.
+          1. Get random from the url_list where is_search = 1 and is_crawled = 0 (ensure update the other crawler to ignore is_search to avoid duplicate crawl)
+          2. get list of host from database. loop!
+          3. execute! get link from each page.
+          4. if found product link, input product link to url_list . (check if already exist, if exist, get the id, if not exist, insert and return back the new id).
+          5. insert keyword and link id to keyword table.
+          6. if found next link, cek in url, if exist, ignore. if not, insert.
+      */
+    }
+
+
+    public function searchscrap()
+    {
+      /*
+      1. get random id from crawl_result where crawl_result_id=''.
+      2. find from crawl_result where url_list_id = current. url_list_id.
+      3. if not found: lempar ke pencari. masukin ke crawl_result.
+      4. update the keyword table.
+      */
     }
 
     public function linkminer($hostid = 0)
