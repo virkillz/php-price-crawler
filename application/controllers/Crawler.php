@@ -15,6 +15,23 @@ class Crawler extends CI_Controller
         $this->load->model('ourmodel', '', true);
     }
 
+    public function summarizer()
+    {
+      $summary_url_list = $this->crawlmodel->summary_url_list();
+
+
+      $data=array(
+        'total_url' => $summary_url_list[0]->links,
+        'total_maybe_product' => $summary_url_list[0]->maybe_prod,
+        'total_category' => $summary_url_list[0]->is_category,
+        'total_scrap' => $summary_url_list[0]->is_extracted,
+        'total_crawl' => $summary_url_list[0]->is_crawled,
+      );
+
+      var_dump($data);
+    }
+
+
     public function searchcrawler()
     {
       /*
@@ -122,7 +139,7 @@ class Crawler extends CI_Controller
     public function searchscrap()
     {
       /*
-      1. get random id from crawl_result where crawl_result_id=''.
+      1. get random id from keyword where crawl_result_id=''.
       2. find from crawl_result where url_list_id = current. url_list_id.
       3. if not found: lempar ke pencari. masukin ke crawl_result.
       4. update the keyword table.

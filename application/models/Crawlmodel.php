@@ -195,6 +195,22 @@ $this -> db -> where('url', $url);
 $this -> db -> update('url_list', $data);
 }
 
+function summary_url_list()
+{
+  $sql="SELECT COUNT(url) as links, sum(if(maybe_product = 1,1,0)) as maybe_prod, sum(if(is_crawled = 1,1,0)) as is_crawled, sum(if(is_extracted = 1,1,0)) as is_extracted, sum(if(is_category = 1,1,0)) as is_category FROM url_list";
+  $query=$this->db->query($sql);
+  $hasil=$query->result();
+  return $hasil;
+
+}
+
+function summary_keyword()
+{
+  $sql="SELECT keyword FROM `keyword` GROUP by keyword";
+  $query=$this->db->query($sql);
+  $hasil=$query->num_rows();
+  return $hasil;
+}
 
 
 }
