@@ -323,6 +323,7 @@ class Crawler extends CI_Controller
                       $extract['url_list_id'] = $url->idx;
                       $extract['host_id'] = $hostid;
                       $this->crawlmodel->insertCrawl($extract);
+                      $this->crawlmodel->tag_is_extracted($url->idx);
                     }
                     $this->crawlmodel->tag_is_extracted($url->idx);
                     var_dump($extract);
@@ -333,13 +334,64 @@ class Crawler extends CI_Controller
                     echo $url->url.'<br>';
                 }
             }
+            $time = (microtime(true) - $time_start);
+            $perurl = $time / $limit;
+            echo '<br>On average, we extract data '.$perurl.'/url <br>';
+            echo 'Total execution time in seconds: '.(microtime(true) - $time_start).' for '.$limit.' url.';
+            echo 'Which means you better ';
+        } else {
+          echo "The host ID is unknown.";
         }
-        $time = (microtime(true) - $time_start);
-        $perurl = $time / $limit;
-        echo '<br>On average, we extract data '.$perurl.'/url <br>';
-        echo 'Total execution time in seconds: '.(microtime(true) - $time_start).' for '.$limit.' url.';
-        echo 'Which means you better ';
     }
+
+
+    public function contentupdater($hostid = 0, $limit = 10) //Lets call this worker, Ricky
+    //This is, we refer as script 2. The sole purpose is to get the content (from previously tagged 'maybe_product' by script 1) and save to database
+    {
+        $time_start = microtime(true); //Yeah. so later on I can show how long this script run
+
+      //if no predefined id, get random from database
+      if ($hostid == 0) {
+          $hostid = $this->crawlmodel->RandomUpdateHost();
+      }
+
+      //get hostid info, we need name xpath, price xpath, format regex if any.
+      $hostinfo = $this->crawlmodel->getHostDetail($hostid);
+        if ($hostinfo) {
+            echo $hostinfo[0]->host_name.' is now the target <br>';
+            $name_xpath = $hostinfo[0]->name_xpath;
+            $price_xpath = $hostinfo[0]->price_xpath;
+            $brand_xpath = $hostinfo[0]->brand_xpath;
+            $category_xpath = $hostinfo[0]->category_xpath;
+            $sku_xpath = $hostinfo[0]->sku_xpath;
+            $seller_xpath = $hostinfo[0]->seller_xpath;
+            $format_regex = $hostinfo[0]->prod_regex;
+
+            $target = $this->crawlmodel->getUpdateTarget($hostid, $limit);
+            foreach ($target as $url) {
+                        echo $url->id.'<br>';
+                        // DO THE EXTRACTION
+                        $extract = $this->extractInfo($url->url, $name_xpath, $price_xpath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath);
+                        $id = $url->id;
+                        if ($extract['price']=='') {
+                          $extract['name']='404';
+                        }
+                        $extract['update_by']='Ricky: sytem updater';
+                        $this->crawlmodel->updateResult($id, $extract);
+                        var_dump($extract);
+                        echo "<br><br><br>";
+
+            }
+            $time = (microtime(true) - $time_start);
+            $perurl = $time / $limit;
+            echo '<br>On average, we extract data '.$perurl.'/url <br>';
+            echo 'Total execution time in seconds: '.(microtime(true) - $time_start).' for '.$limit.' url.';
+            echo 'Which means you better ';
+        } else {
+          echo "The host ID is unknown.";
+        }
+    }
+
 
 //THE MOST IMPORTANT OF ALLL
 public function extractInfo($url, $namepath, $pricepath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath)

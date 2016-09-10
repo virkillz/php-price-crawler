@@ -41,9 +41,16 @@ function getExtractTarget($hostid,$limit) {
   $this->db->order_by('maybe_product','DESC');
   $this->db->limit($limit);
   $query = $this ->db->get('url_list');
-
   return $query->result();
+}
 
+function getUpdateTarget($hostid,$limit) {
+  $this->db->where('host_id',$hostid);
+  $this->db->where('category','');
+  $this->db->limit($limit);
+  $query = $this ->db->get('crawl_result');
+  return $query->result();
+  //return $this->db->last_query();
 }
 
 function LinkNotYetCrawl($hostid)
@@ -89,6 +96,23 @@ function tag_is_extracted($id) {
    }
  }
 
+ function RandomUpdateHost()
+ {
+   $this->db->select('id');
+   $this->db->where('category_xpath !=','');
+   $this->db->order_by('host_name','RANDOM');
+   $this->db->limit(1);
+   $query = $this ->db->get('host');
+   if($query -> num_rows() == 1)
+   {
+     $result = $query->result();
+     return $result[0]->id;
+   }
+   else
+   {
+     return false;
+   }
+ }
 
  function get_host()
  {
@@ -171,6 +195,10 @@ $this -> db -> where('username', $id);
 $this -> db -> update('users', $data);
 }
 
+function updateResult($id,$data){
+$this -> db -> where('id', $id);
+$this -> db -> update('crawl_result', $data);
+}
 
 function insertCrawl($data) {
   $this->db->insert('crawl_result',$data);
