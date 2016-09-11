@@ -61,6 +61,7 @@ function LinkNotYetCrawl($hostid)
   $this->db->where('url_list.keyword','');
   $this->db->where('host_id',$hostid);
   $this->db->order_by('is_category', 'DESC');
+  $this->db->order_by('priority_score', 'DESC');
   $this->db->limit(1);
   $query = $this ->db->get('url_list');
   if($query -> num_rows() == 1)
@@ -189,6 +190,9 @@ function tag_is_extracted($id) {
    }
  }
 
+ function insert_summary($data){
+  $this->db->insert('summary',$data);
+ }
 
 function update_profile_id($id,$data){
 $this -> db -> where('username', $id);

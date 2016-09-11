@@ -11,6 +11,8 @@ class Crawler extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        //so, anytime you see $this->crawlmodel->something() and dont know what it does, goes to application/model/crawlmodel.php and go to something() line. You will understand.
+        //everything related to database is in here.
         $this->load->model('crawlmodel', '', true);
         $this->load->model('ourmodel', '', true);
     }
@@ -18,7 +20,6 @@ class Crawler extends CI_Controller
     public function summarizer()
     {
       $summary_url_list = $this->crawlmodel->summary_url_list();
-
 
       $data=array(
         'total_url' => $summary_url_list[0]->links,
@@ -28,7 +29,9 @@ class Crawler extends CI_Controller
         'total_crawl' => $summary_url_list[0]->is_crawled,
       );
 
-      var_dump($data);
+      $data['total_product'] = $this->ourmodel->getTotalProd();
+
+      $this->crawlmodel->insert_summary($data);
     }
 
 
@@ -166,6 +169,7 @@ class Crawler extends CI_Controller
 
       //2. It will search new host not yet been crawled, if any, grab starter_url.
       $HostNotYetCrawl = $this->crawlmodel->HostNotYetCrawl();
+      $global_blacklist = $this->ourmodel->settings_get_blacklist();
 
         if ($HostNotYetCrawl) {
 
@@ -214,6 +218,14 @@ class Crawler extends CI_Controller
                 }
 
             echo $link.' has been inserted.<br>';
+
+            //Check GLOBAL BLACKLIST
+            if ($global_blacklist != '') {
+                if (preg_match($global_blacklist, $link)) {
+                  echo "---GLOBAL BLACKLIST DETECTED<br>";
+                    continue;
+                }
+            }
 
               //5. If blacklist_regex exist (not empty) and match, it will be ignored (escape foreach).
               if ($blacklist_regex != '') {

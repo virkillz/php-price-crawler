@@ -196,9 +196,33 @@ return $query->result();
    }
  }
 
+ function settings_get_blacklist()
+ {
+   $this->db->select('value_');
+   $this -> db -> where('key_', 'global_blacklist');
+   $this -> db -> limit(1);
+   $query = $this -> db -> get('settings');
+
+   if($query -> num_rows() == 1)
+   {
+     $hasil = $query->result();
+     return $hasil[0]->value_;
+   }
+   else
+   {
+     return false;
+   }
+ }
+
  function update_host($id,$data){
  $this -> db -> where('id', $id);
  $this -> db -> update('host', $data);
+
+ }
+
+ function setting_update_blacklist($data){
+ $this -> db -> where('key_', 'global_blacklist');
+ $this -> db -> update('settings', $data);
 
  }
 

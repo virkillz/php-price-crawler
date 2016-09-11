@@ -62,6 +62,12 @@
                                     <li><a href="<?php echo base_url(); ?>export/crawlexport">Crawling Data</a></li>
                                 </ul>
                             </li>
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='setting') {echo "active";} ?>"><i class="md md-settings"></i> <span> Setting </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="<?php echo base_url(); ?>settings/blacklist">Setting Blacklist</a></li>
+                                </ul>
+                            </li>
                             <!-- <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="md md-mail"></i><span> Mail </span><span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">

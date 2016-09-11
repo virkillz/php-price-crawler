@@ -136,7 +136,7 @@ class Test extends Auth_Controller
     public function action_test_crawl()
     {
         $time_start = microtime(true);
-
+        $global_blacklist = $this->ourmodel->settings_get_blacklist();
           $url=$_POST['url'];
           $blacklist_regex=$_POST['isblacklist'];
           $cat_regex=$_POST['iscat'];
@@ -160,6 +160,14 @@ class Test extends Auth_Controller
                 }
 
                 echo $link."<br>";
+
+                //Check GLOBAL BLACKLIST
+                if ($global_blacklist != '') {
+                    if (preg_match($global_blacklist, $link)) {
+                      echo "---GLOBAL BLACKLIST DETECTED<br>";
+                        continue;
+                    }
+                }
 
                 //5. If blacklist_regex exist (not empty) and match, it will be ignored (escape foreach).
                 if ($blacklist_regex != '') {
