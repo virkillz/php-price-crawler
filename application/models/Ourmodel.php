@@ -131,11 +131,14 @@ function download_crawl_result($where1,$where2,$where3,$where4,$where5)
 
  function get_crawl_result($startid,$limit)
  {
-   $this->db->where('id >',$startid);
-   $this->db->order_by('id');
-   $this->db->limit($limit);
-   $query = $this -> db -> get('crawl_result');
-   return $query->result();
+   $sql="SELECT crawl_result.*,host.host_name
+        FROM crawl_result
+        LEFT JOIN host
+        ON crawl_result.host_id=host.id
+        WHERE crawl_result.id>$startid
+        LIMIT $limit;";
+    $query = $this -> db -> query($sql);
+    return $query->result();
  }
 
 function get_keyword_summary()
