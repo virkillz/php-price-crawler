@@ -129,6 +129,15 @@ function download_crawl_result($where1,$where2,$where3,$where4,$where5)
    return $query->result();
  }
 
+ function get_crawl_result($startid,$limit)
+ {
+   $this->db->where('id >',$startid);
+   $this->db->order_by('id');
+   $this->db->limit($limit);
+   $query = $this -> db -> get('crawl_result');
+   return $query->result();
+ }
+
 function get_keyword_summary()
 {
   $sql="SELECT keyword, sum(if(url_list_id != 0,1,0)) as jumlah_link,sum(if(crawl_result_id != 0,1,0)) as jumlah_produk
