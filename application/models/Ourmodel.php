@@ -2,6 +2,24 @@
 Class Ourmodel extends CI_Model
 {
 
+
+  function insert_matahari_crawl($url, $data){
+
+   $sql="SELECT id FROM matahari_url WHERE url = '$url'";
+   $query = $this->db->query($sql);
+
+   if($query -> num_rows() == 0)
+   {
+     $insert_query = $this->db->insert_string('matahari_url', $data);
+     $insert_query = str_replace('INSERT INTO','INSERT IGNORE INTO',$insert_query);
+     $this->db->query($insert_query);
+     return TRUE;
+   } else {
+     return FALSE;
+   }
+
+  }
+
  function insert_host($data)
  {
    if ($this->db->insert('host', $data)) {
@@ -108,6 +126,20 @@ function download_scrap_result($where1,$where2)
   $sql = "SELECT id,name,price,url FROM crawl_result WHERE 1=1".$where1.$where2;
   $query = $this -> db -> query($sql);
   return $query->result();
+}
+
+function get_counter()
+{
+  $sql = "SELECT value_ FROM `settings` WHERE key_='counter'";
+  $query = $this -> db -> query($sql);
+  $hasil = $query->result();
+  return $hasil[0]->value_;
+}
+
+function update_counter($data)
+{
+  $this -> db -> where('key_', 'counter');
+  $this -> db -> update('settings', $data);
 }
 
 function download_crawl_result($where1,$where2,$where3,$where4,$where5)

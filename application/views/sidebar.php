@@ -42,6 +42,12 @@
                                 </ul>
                             </li>
                             <li class="has_sub">
+                                <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='special') {echo "active";} ?>"><i class="md md-link"></i> <span> Action</span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="<?php echo base_url(); ?>special">Crawl a URL</a></li>
+                                </ul>
+                            </li>
+                            <li class="has_sub">
                                 <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='scrap' or $this->uri->segment(1)=='links') {echo "active";} ?>"><i class="md md-link"></i> <span> Result</span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="<?php echo base_url(); ?>scrap">Scrapping Result</a></li>
