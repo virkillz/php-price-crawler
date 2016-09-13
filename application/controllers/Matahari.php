@@ -111,6 +111,7 @@ class Matahari extends CI_Controller
                           $extract['category'] = $url->category;
                         }
                         $this->crawlmodel->insertCrawl($extract);
+                        $this->crawlmodel->matahari_is_extracted($url->id);
                         echo '<pre>';
                         print_r($extract);
                         echo "</pre><br><br><br>";

@@ -88,6 +88,11 @@ function tag_is_extracted($id) {
   $this->db->query($sql);
 }
 
+function matahari_is_extracted($id) {
+  $sql = "UPDATE `matahari_url` SET is_scraped=1 WHERE id='$id'";
+  $this->db->query($sql);
+}
+
  function RandomHost()
  {
    $this->db->select('id');
