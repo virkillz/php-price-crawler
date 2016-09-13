@@ -73,92 +73,155 @@ class Matahari extends CI_Controller
           echo '<br>Total execution time in seconds: '.(microtime(true) - $time_start);
     }
 
-
-    //----------------------------------------abaikan =----------------//
-
-    public function action_test()
+    public function product_scraping($limit = 10)
+    //This is, we refer as script 2. The sole purpose is to get the content (from previously tagged 'maybe_product' by script 1) and save to database
     {
-      // to retrieve selected html data, try these DomXPath examples:
-      $time_start = microtime(true);
+        $time_start = microtime(true); //Yeah. so later on I can show how long this script run
 
-      $file= $_POST['url'];
-      $xmen = $_POST['xpath'];
-      $data['message'] = "Target : ".$file."<br>";
-      $data['message'] .= "X-path : ".$xmen."<br>";
-      $doc = new DOMDocument('1.0', 'UTF-8');
 
-      $internalErrors = libxml_use_internal_errors(true);
-      if ($doc->loadHTMLfile($file)) {
+      //get hostid info, we need name xpath, price xpath, format regex if any.
+      $hostinfo = $this->crawlmodel->getHostDetail(12);
+        if ($hostinfo) {
+            $name_xpath = $hostinfo[0]->name_xpath;
+            $price_xpath = $hostinfo[0]->price_xpath;
+            $brand_xpath = $hostinfo[0]->brand_xpath;
+            $category_xpath = $hostinfo[0]->category_xpath;
+            $sku_xpath = $hostinfo[0]->sku_xpath;
+            $non_discount_xpath = $hostinfo[0]->no_discount_xpath;
+            $discount_xpath = $hostinfo[0]->discount_xpath;
+            $seller_xpath = $hostinfo[0]->seller_xpath;
+            $format_regex = $hostinfo[0]->prod_regex;
+
+            $target = $this->crawlmodel->get_matahari_scrap_target($limit);
+            echo '<pre>';
+            print_r($target);
+            echo '</pre>';
+            foreach ($target as $url) {
+
+                //match with regex
+                if ($format_regex != '') {
+                    if (preg_match($format_regex, $url->url)) {
+                        echo $url->url.' contain product data: <br><br>';
+                        // DO THE EXTRACTION
+                        $extract = $this->extractInfo($url->url, $name_xpath, $price_xpath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath,$non_discount_xpath,$discount_xpath);
+                        if ($extract['price']!='') {
+                          $extract['url'] = $url->url;
+                          $extract['url_list_id'] = $url->id;
+                          $extract['host_id'] = 12;
+                          $extract['category'] = $url->category;
+                        }
+                        $this->crawlmodel->insertCrawl($extract);
+                        echo '<pre>';
+                        print_r($extract);
+                        echo "</pre><br><br><br>";
+                    } else {
+                        echo $url->url.' NOT match regex<br>';
+                    }
+                }
+            }
+            $time = (microtime(true) - $time_start);
+            $perurl = $time / $limit;
+            echo '<br>On average, we extract data '.$perurl.'/url <br>';
+            echo 'Total execution time in seconds: '.(microtime(true) - $time_start).' for '.$limit.' url.';
+        } else {
+          echo "The host ID is unknown.";
+        }
+    }
+
+
+//THE MOST IMPORTANT OF ALLL
+public function extractInfo($url, $namepath, $pricepath, $brand_xpath, $category_xpath, $sku_xpath, $seller_xpath,$non_discount_xpath,$discount_xpath)
+//This is main algoritm to extract info from url to get the data based on its xpath.
+{
+    $doc = new DOMDocument('1.0', 'UTF-8');
+
+    $internalErrors = libxml_use_internal_errors(true);
+    if ($doc->loadHTMLfile($url)) {
         libxml_use_internal_errors($internalErrors);
-
         $xpath = new DOMXpath($doc);
 
-        $elements = $xpath->query($xmen);
+    //get name
+    $elements = $xpath->query($namepath);
         if (!is_null($elements) && isset($elements[0]->nodeValue)) {
-        $data['message'] .= $elements[0]->nodeValue;
-      } else {$data['message'] .= 'cannot found information based on xpath';}
+            $data['name'] = $elements[0]->nodeValue;
+        } else {
+            $data['name'] = '';
+        }
 
-      $session_data = $this->session->userdata('logged_in');
-      $data['username'] = $session_data['username'];
-      $this->load->view('header', $data);
-      $this->load->view('topbar', $session_data);
-      $this->load->view('sidebar', $session_data);
-      $somestring = $doc->saveHTML();
-      $somestring = htmlspecialchars($somestring);
+        //get price
+        $price = $xpath->query($pricepath);
+        if (!is_null($price) && isset($price[0]->nodeValue)) {
+            $data['price'] = filter_var($price[0]->nodeValue, FILTER_SANITIZE_NUMBER_INT);
+        } else {
+            $data['price'] = '';
+        }
 
-      $data['message'] .= 'Source Code: <br><pre><code class="language-markup" id="bar">'.$somestring.'</code></pre>';
+        //get price non discount
+        if ($non_discount_xpath!='')
+        {$nprice = $xpath->query($non_discount_xpath);
+        if (!is_null($nprice) && isset($nprice[0]->nodeValue)) {
+            $data['price_non_discount'] = filter_var($price[0]->nodeValue, FILTER_SANITIZE_NUMBER_INT);
+        } else {
+            $data['price_non_discount'] = '';
+        }}
 
-      $data['message'] .=  '<button class="btn" data-clipboard-target="#bar">
-                                Copy to clipboard
-                            </button>';
+        //get discount
+        if ($discount_xpath!='')
+        {$disc = $xpath->query($discount_xpath);
+        if($disc!=false)
+        { if (!is_null($disc) && isset($disc[0]->nodeValue)) {
+            $data['discount'] = $disc[0]->nodeValue;
+        } else {
+            $data['discount'] = '';
+        }}}
 
-      $data['message'] .= '<br>Total execution time in seconds: ' . (microtime(true) - $time_start);
-      } else {
-        $data['message'] .= 'cannot open the URL, please check in the browser.';
-      };
-      $this->load->view('blank',$data);
-    }
-    //
-    // public function insert_host()
-    // {    $this->load->helper('security');
-    //      $this->load->library('form_validation');
-    //      $this->form_validation->set_rules('name', 'Website Name', 'required|xss_clean|is_unique[host.host_name]');
-    //      $this->form_validation->set_rules('url', 'Example URL', 'required|xss_clean|is_unique[host.example_url]|callback_valid_url',array('valid_url'=>'Example URL invalid.'));
-    //      $this->form_validation->set_rules('starturl', 'Starter URL', 'required|xss_clean|callback_valid_url',array('valid_url'=>'Starter URL invalid.'));
-    //
-    //
-    //      if($this->form_validation->run() == FALSE)
-    //      {
-    //        $session_data = $this->session->userdata('logged_in');
-    //        $data['username'] = $session_data['username'];
-    //        $this->load->view('header', $data);
-    //        $this->load->view('topbar', $session_data);
-    //        $this->load->view('sidebar', $session_data);
-    //        $this->load->view('master_host_add');
-    //      }
-    //      else
-    //      {
-    //        $data = array(
-    //          'host_name' => $this->input->post('name'),
-    //          'example_url' => $this->input->post('url'),
-    //          'starter_url' => $this->input->post('starturl'),
-    //          'name_xpath' => $this->input->post('namepath'),
-    //          'price_xpath' => $this->input->post('pricepath'),
-    //          'remarks' => $this->input->post('desc')
-    //        );
-    //        $tryinsert = $this->ourmodel->insert_host($data);
-    //        if ($tryinsert!=false) {
-    //          redirect('host','refresh');
-    //        } else {
-    //          echo 'error at inserting';
-    //        }
-    //      }
-    //
-    //
-    // }
-    //
-    // function valid_url($url)
-    // {
-    //   return filter_var($url, FILTER_VALIDATE_URL);
-    // }
+        //get brand
+        if ($brand_xpath!='')
+        {$brand = $xpath->query($brand_xpath);
+        if($brand!=false)
+        { if (!is_null($brand) && isset($brand[0]->nodeValue)) {
+            $data['brand'] = $brand[0]->nodeValue;
+        } else {
+            $data['brand'] = '';
+        }}}
+
+        //get sku
+        if ($sku_xpath!='')
+        { $sku = $xpath->query($sku_xpath);
+         if ($sku!=false)
+        {if (!is_null($sku) && isset($sku[0]->nodeValue)) {
+            $data['sku'] = $sku[0]->nodeValue;
+        } else {
+            $data['sku'] = '';
+        }}}
+
+        //get category
+//         if ($category_xpath!='')
+// {        $category = $xpath->query($category_xpath);
+//         if ($category!=false)
+//         {if (!is_null($category) && isset($category[0]->nodeValue)) {
+//             $data['category'] = $category[0]->nodeValue;
+//         } else {
+//             $data['category'] = '';
+//         }}}
+
+        //get seller
+        if ($seller_xpath!='')
+{        $seller = $xpath->query($seller_xpath);
+        if ($seller!=false)
+        {if (!is_null($seller) && isset($seller[0]->nodeValue)) {
+            $data['seller'] = $seller[0]->nodeValue;
+        } else {
+            $data['seller'] = '';
+        }}}
+
+
+    } else {
+        $data = array('name' => '', 'price' => '');
+    };
+
+    return $data;
+}
+
+
 }

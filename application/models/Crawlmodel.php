@@ -2,6 +2,14 @@
 Class Crawlmodel extends CI_Model
 {
 
+  function get_matahari_scrap_target($limit) {
+    $this->db->where('is_scraped',0);
+    $this->db->limit($limit);
+    $this->db->order_by('id','RANDOM');
+    $query = $this ->db->get('matahari_url');
+    return $query->result();
+  }
+
  function HostNotYetCrawl()
  {
    $this->db->select('starter_url,id,prod_regex,cat_regex,blacklist_regex');
