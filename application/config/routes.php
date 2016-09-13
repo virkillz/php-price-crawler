@@ -54,3 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['testcrawl'] = 'test/crawling';
 $route['test_search'] = 'test/test_search';
+$route['scrap/:num'] = 'scrap/index/$1';

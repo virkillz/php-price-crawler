@@ -13,12 +13,44 @@ class Matahari extends CI_Controller
         $this->load->model('crawlmodel','',TRUE);
     }
 
+    public function index()
+    {
+        if ($this->session->userdata('locked')) {
+            $this->session->unset_userdata('locked');
+        }
+
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
+        $this->load->view('header', $data);
+        $this->load->view('topbar', $session_data);
+        $this->load->view('sidebar', $session_data);
+        $data['pagenumber']=$this->ourmodel->get_counter();
+        $data['url']=$this->crawlmodel->getMatahariUrl();
+        $data['keyword']=$this->crawlmodel->getMatahariKeyword();
+        $data['hostid']=$this->crawlmodel->getMatahariHostid();
+        $data['isactive']=$this->crawlmodel->getMatahariActivestatus();
+        $data['hasil'] = $this->ourmodel->get_host();
+        $this->load->view('setting_active_crawl',$data);
+    }
+
+    public function update_setting()
+    {
+      $this->crawlmodel->update_setting_url($this->input->post('url'));
+      $this->crawlmodel->update_setting_counter($this->input->post('number'));
+      $this->crawlmodel->update_setting_host_id($this->input->post('hostid'));
+      $this->crawlmodel->update_setting_keyword($this->input->post('keyword'));
+      $this->crawlmodel->update_setting_isactive($this->input->post('isactive'));
+
+      redirect('matahari','refresh');
+    }
 
     public function product_mining()
     {
           $time_start = microtime(true);
 
-
+          $proceed=$this->crawlmodel->getMatahariActivestatus();
+          if ($proceed!='1'){echo 'inactive';die;}
+          $hostid=$this->crawlmodel->getMatahariHostid();
           $count=$this->ourmodel->get_counter();
           $url=$this->crawlmodel->getMatahariUrl().$count;
           $keyword=$this->crawlmodel->getMatahariKeyword();

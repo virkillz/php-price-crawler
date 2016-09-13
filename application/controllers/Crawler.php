@@ -358,7 +358,6 @@ class Crawler extends CI_Controller
 
 
     public function contentupdater($hostid = 0, $limit = 10) //Lets call this worker, Ricky
-    //This is, we refer as script 2. The sole purpose is to get the content (from previously tagged 'maybe_product' by script 1) and save to database
     {
         $time_start = microtime(true); //Yeah. so later on I can show how long this script run
 

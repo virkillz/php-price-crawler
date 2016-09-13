@@ -29,7 +29,8 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <table id="datatable" class="table table-striped table-bordered">
+                                                <ul class="pagination"><?php echo $links; ?></ul>
+                                                <table class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
                                                             <th>Result ID</th>
@@ -44,12 +45,12 @@
                                                     <?php
 
                                                     foreach ($hasil as $h) {
-                                                        echo '<tr><td>'.$h->id.'</td><td>'.$h->name.'</td><td>'.$h->price.'</td><td>'.$h->url.'</td><td>'.$h->host_id.'</td><td><form action="'.base_url().'masterdata/agent/'.$h->id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
+                                                        echo '<tr><td>'.$h->id.'</td><td>'.$h->name.'</td><td>'.$h->price.'</td><td>'.$h->url.'</td><td>'.$h->host_id.'</td><td><form action="'.base_url().'scrap/product_detail/'.$h->id.'"><button type="submit" class="btn btn-primary waves-effect waves-light m-b-5"> <i class="fa fa-edit"></i> <span> Detail </span></button></form></td></tr>';
                                                     }
                                                        ?>
                                                     </tbody>
                                                 </table>
-
+                                                <ul class="pagination"><?php echo $links; ?></ul>
                                             </div>
                                         </div>
                                     </div>

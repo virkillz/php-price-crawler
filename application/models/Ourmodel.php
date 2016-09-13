@@ -85,6 +85,19 @@ public function fetch_all_link($limit, $start) {
         return false;
    }
 
+   public function fetch_all_product($limit, $start) {
+           $this->db->limit($limit, $start);
+           $query = $this->db->get("crawl_result");
+
+           if ($query->num_rows() > 0) {
+               foreach ($query->result() as $row) {
+                   $data[] = $row;
+               }
+               return $data;
+           }
+           return false;
+      }
+
 function getAllLink()
 {
   $query = $this -> db -> get('url_list');
@@ -157,6 +170,13 @@ function download_crawl_result($where1,$where2,$where3,$where4,$where5)
 
  function get_crawl()
  {
+   $query = $this -> db -> get('crawl_result');
+   return $query->result();
+ }
+
+ function get_crawl_by_id($id)
+ {
+   $this->db->where('id',$id);
    $query = $this -> db -> get('crawl_result');
    return $query->result();
  }

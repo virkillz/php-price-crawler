@@ -42,9 +42,10 @@
                                 </ul>
                             </li>
                             <li class="has_sub">
-                                <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='special') {echo "active";} ?>"><i class="md md-link"></i> <span> Action</span> <span class="pull-right"><i class="md md-add"></i></span></a>
+                                <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='special' or $this->uri->segment(1)=='matahari') {echo "active";} ?>"><i class="md md-send"></i> <span> Action</span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="<?php echo base_url(); ?>special">Crawl a URL</a></li>
+                                    <li><a href="<?php echo base_url(); ?>matahari">Active Crawl</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
@@ -57,8 +58,8 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect <?php if ($this->uri->segment(1)=='crawlsummary' or $this->uri->segment(1)=='scrapsummary') {echo "active";} ?>"><i class="md md-view-list"></i> <span> Summary </span> <span class="pull-right"><i class="md md-add"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="<?php echo base_url(); ?>crawlsummary">Scrapping Summary</a></li>
-                                    <li><a href="<?php echo base_url(); ?>scrapsummary">Crawling Summary</a></li>
+                                    <li><a href="<?php echo base_url(); ?>scrapsummary">Scrapping Summary</a></li>
+                                    <li><a href="<?php echo base_url(); ?>crawlsummary">Crawling Summary</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">

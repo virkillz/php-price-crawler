@@ -242,11 +242,55 @@ function getMatahariUrl(){
   return $hasil[0]->value_;
 }
 
+function getMatahariActivestatus(){
+  $sql="SELECT value_ FROM `settings` WHERE key_='is_active' LIMIT 1";
+  $query=$this->db->query($sql);
+  $hasil=$query->result();
+  return $hasil[0]->value_;
+}
+
+function getMatahariHostid(){
+  $sql="SELECT value_ FROM `settings` WHERE key_='host_id' LIMIT 1";
+  $query=$this->db->query($sql);
+  $hasil=$query->result();
+  return $hasil[0]->value_;
+}
+
 function getMatahariKeyword(){
   $sql="SELECT value_ FROM `settings` WHERE key_='special_keyword' LIMIT 1";
   $query=$this->db->query($sql);
   $hasil=$query->result();
   return $hasil[0]->value_;
+}
+
+function update_setting_url($value)
+{
+  $sql="UPDATE `settings` SET `value_`='$value' WHERE key_='special_url'";
+  $query=$this->db->query($sql);
+}
+
+function update_setting_counter($value)
+{
+  $sql="UPDATE `settings` SET `value_`='$value' WHERE key_='counter'";
+  $query=$this->db->query($sql);
+}
+
+function update_setting_keyword($value)
+{
+  $sql="UPDATE `settings` SET `value_`='$value' WHERE key_='special_keyword'";
+  $query=$this->db->query($sql);
+}
+
+function update_setting_isactive($value)
+{
+  $sql="UPDATE `settings` SET `value_`='$value' WHERE key_='is_active'";
+  $query=$this->db->query($sql);
+}
+
+function update_setting_host_id($value)
+{
+  $sql="UPDATE `settings` SET `value_`='$value' WHERE key_='host_id'";
+  $query=$this->db->query($sql);
 }
 
 function updateMaybeProduct($url,$data){
