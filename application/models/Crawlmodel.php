@@ -235,6 +235,20 @@ function getZeroMaybe($hostid){
   return $query->result();
 }
 
+function getMatahariUrl(){
+  $sql="SELECT value_ FROM `settings` WHERE key_='special_url' LIMIT 1";
+  $query=$this->db->query($sql);
+  $hasil=$query->result();
+  return $hasil[0]->value_;
+}
+
+function getMatahariKeyword(){
+  $sql="SELECT value_ FROM `settings` WHERE key_='special_keyword' LIMIT 1";
+  $query=$this->db->query($sql);
+  $hasil=$query->result();
+  return $hasil[0]->value_;
+}
+
 function updateMaybeProduct($url,$data){
 $this -> db -> where('url', $url);
 $this -> db -> update('url_list', $data);

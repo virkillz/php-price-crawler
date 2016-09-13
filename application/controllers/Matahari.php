@@ -20,8 +20,8 @@ class Matahari extends CI_Controller
 
 
           $count=$this->ourmodel->get_counter();
-          $url="https://www.mataharimall.com/p-3/smartphone?per_page=100&page=".$count;
-          $keyword='Smartphone';
+          $url=$this->crawlmodel->getMatahariUrl().$count;
+          $keyword=$this->crawlmodel->getMatahariKeyword();
           $prod_regex='/(https?:\/\/.[^\/]*\/[^\/]+(\.html))|(\.html\&vg)/';
 
 
