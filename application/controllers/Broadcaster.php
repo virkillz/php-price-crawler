@@ -17,6 +17,7 @@ class Broadcaster extends CI_Controller
       $result = $this -> ourmodel ->get_crawl_result($startid,$limit);
       $result=json_encode($result);
       echo $result;
+      //echo $this->db->last_query();
     }
 
     }
